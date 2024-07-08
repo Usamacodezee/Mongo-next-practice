@@ -74,7 +74,7 @@ export default function SideBar() {
           >
             <Link href="/dashboard" style={{ textDecoration: "none" }}>
               <span className="SideBarLinks text-center SideBarHeading">
-                Mongo test
+                NextJS
               </span>
             </Link>
           </div>
