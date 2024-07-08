@@ -9,7 +9,6 @@ import { AppDispatch } from "@/redux/store";
 import { logoutAdminAsync } from "@/redux/admin/adminSlice";
 import { Tooltip } from "primereact/tooltip";
 import "@/app/globals.css";
-import { TagsOptions } from "../common/ProductFormData";
 
 export const LinksOptions = [
   { name: "dashboard" },
