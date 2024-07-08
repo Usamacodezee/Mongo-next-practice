@@ -227,12 +227,12 @@ a {
 }
 
 .SideBarHeading {
-  font-size: 2.4rem;
+  font-size: 2rem;
   color: white;
 }
 
 .SideBarHeading:hover {
-  font-size: 2.6rem;
+  font-size: 2.1rem;
   color: #abcfed;
 }
 
