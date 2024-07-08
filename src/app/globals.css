@@ -1,3 +1,6 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -98,6 +101,378 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.p-icon-field {
+  width: 100%;
+  display: flex;
+  text-align: center;
+}
+
+.p-password-input {
+  width: 90%;
+  padding: 0.5rem 1rem;
+}
+
+.p-rating {
+  display: flex;
+  justify-content: center;
+}
+
+.p-paginator-bottom {
+  display: flex;
+  justify-content: end;
+}
+
+.paginatorButtons {
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.paginatorButtons:hover {
+  color: #2196f3;
+}
+
+.p-chip-icon {
+  padding-right: 0.5rem;
+}
+
+.CheckOutButton {
+  background-color: rgb(255, 255, 255);
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  transition: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+.CheckOutButton:hover {
+  background-color: #b1d7f8;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 20px;
+  transition: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+
+.UserEditIcon {
+  font-size: 2rem;
+  cursor: pointer;
+  color: white;
+  padding-left: 10px;
+  transition: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+
+.UserEditIcon:hover {
+  font-size: 2.2rem;
+  color: #b1d7f8;
+  transition: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+
+.SideBarLinks {
+  text-decoration: none;
+  font-size: 1.3rem;
+  color: #ffffff;
+  transition: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+
+.SideBarLinks:hover {
+  font-size: 1.5rem;
+  color: #b1d7f8;
+  transition: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+
+.p-column-filter {
+  padding: 6px 8px;
+  border-radius: 5px;
+}
+
+.p-inline-message {
+  padding: 1px 10px;
+}
+
+.p-inline-message svg {
+  padding-right: 4px;
+}
+
+.PagesSwitchButtons {
+  background-color: transparent;
+  color: white;
+  border-radius: 10px;
+  transition: 0.5s;
+  transition-timing-function: ease-in-out;
+}
+
+.PagesSwitchButtons:hover {
+  background-color: rgb(255, 255, 255);
+  color: #abcfed;
+  transition: 0.5s;
+  transition-timing-function: ease-in-out;
+}
+
+.p-dialog-content {
+  overflow-x: hidden;
+  overflow-y: hidden scroll;
+}
+
+.TagsList .flex-column {
+  height: 5rem;
+  overflow: hidden scroll;
+}
+
+.availabilityStatusList .flex-column {
+  display: ruby;
+}
+
+.SideBarHeading {
+  font-size: 2.4rem;
+  color: white;
+}
+
+.SideBarHeading:hover {
+  font-size: 2.6rem;
+  color: #abcfed;
+}
+
+.ReviewsIconMain,
+.EditIconMain,
+.DeleteIconMain {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+  transition: 0.4s ease-in-out;
+}
+
+.ReviewsIconMain:hover,
+.EditIconMain:hover,
+.DeleteIconMain:hover {
+  font-size: 1.9rem;
+  cursor: pointer;
+  color: rgb(21, 155, 221);
+  transition: 0.4s ease-in-out;
+}
+
+.CartButton {
+  background-color: #116cc7;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  transition: 0.4s ease-in-out;
+}
+
+.CartButton:hover {
+  background-color: rgb(13, 40, 67);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  transition: 0.6s ease-in-out;
+}
+
+.PurchaseButton {
+  background-color: #689f38;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  transition: 0.4s ease-in-out;
+}
+
+.PurchaseButton:hover {
+  background-color: #054813;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  transition: 0.6s ease-in-out;
+}
+
+#productdetailsid {
+  text-decoration: none;
+  color: #000000;
+  font-size: 1rem;
+  font-weight: 650;
+  text-align: start;
+  transition: 0.6s ease-in-out;
+}
+
+#productdetailsid:hover {
+  color: #0674ab;
+  font-weight: 650;
+  text-align: start;
+  transition: 0.6s ease-in-out;
+}
+
+#SignOutIcon {
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: 0.6s ease-in-out;
+}
+
+#SignOutIcon:hover {
+  color: #abcfed;
+  font-size: 1.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.6s ease-in-out;
+}
+
+.p-submenu-header {
+  padding: 0.5rem 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.p-menuitem-link {
+  padding: 0.5rem 0rem;
+}
+
+.p-menu-list {
+  padding-left: 0.5rem;
+}
+
+.p-menuitem-text {
+  padding-left: 0.5rem;
+}
+
+.p-menuitem-content {
+  padding-left: 0.5rem;
+  transition: 0.4s ease-in-out;
+}
+
+.p-menuitem-content:hover {
+  background-color: rgba(187, 190, 193, 0.9);
+  border-radius: 10px;
+  font-size: 1.2rem;
+  transition: 0.4s ease-in-out;
+}
+
+#AdminUpdateButton {
+  background-color: #73c1ff;
+  border-radius: 7px;
+  font-size: larger;
+  font-weight: 500;
+  width: 100%;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+}
+
+#AdminUpdateButton:hover {
+  background-color: #3f8bca;
+  border-radius: 7px;
+  width: 100%;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+}
+
+#ChangePasswordButton {
+  background-color: #73c1ff;
+  border-radius: 7px;
+  margin: 1.5rem 0 0 0;
+  font-size: larger;
+  font-weight: 500;
+  width: 100%;
+  height: 3rem;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+}
+
+#ChangePasswordButton:hover {
+  background-color: #3f8bca;
+  border-radius: 7px;
+  width: 100%;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+}
+
+.p-overlaypanel-close {
+  border-radius: 50%;
+  background-color: rgb(13, 40, 67);
+  object-fit: fill;
+}
+
+.p-inputwrapper-filled .p-dropdown-label {
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+.p-inputwrapper-filled .p-dropdown-trigger {
+  margin: 0 10px;
+  object-fit: fill;
+  width: fit-content;
+}
+
+.p-paginator-bottom {
+  font-size: medium;
+  font-weight: 600;
+}
+
+.p-rating .p-rating-item.p-rating-item-active .p-rating-icon {
+  font-size: 1.9rem;
+  color: #116cc7;
+  opacity: 0.7;
+}
+
+.p-paginator .p-paginator-first,
+.p-paginator .p-paginator-prev,
+.p-paginator .p-paginator-next,
+.p-paginator .p-paginator-last {
+  background-color: transparent;
+  border: 0 none;
+  color: #116cc7;
+  min-width: 2.357rem;
+  height: 2.357rem;
+  margin: 0.143rem;
+  transition: box-shadow 0.2s;
+  border-radius: 3px;
+}
+
+#userdetailsid {
+  font-weight: bold;
+  transition: ease-out 0.5s;
+  text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
+}
+
+#userdetailsid:hover {
+  transition: ease-out 0.5s;
+  color: #116cc7;
+  font-size: 1.4rem;
+}
+
+.userHeading {
+  display: flex;
+  align-items: center;
+  font-size: 2.8rem;
+  font-weight: 650;
+  background: linear-gradient(to right, rgb(13, 40, 67), #116cc7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: 2s ease-in-out;
+}
+
+.userHeading:hover {
+  background: linear-gradient(to right, #116cc7, rgb(13, 40, 67));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: 2s ease-in-out;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(229, 229, 229);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(13, 40, 67);
+  border-radius: 100px;
+  /* border: 2px solid rgb(255, 255, 255); */
 }
 
 @media (prefers-color-scheme: dark) {
