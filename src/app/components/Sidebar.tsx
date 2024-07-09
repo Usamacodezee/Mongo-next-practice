@@ -15,6 +15,7 @@ export const LinksOptions = [
   { name: "products" },
   { name: "users" },
   { name: "custom-filter" },
+  { name: "Material-UI" },
 ];
 
 export default function SideBar() {
@@ -101,6 +102,8 @@ export default function SideBar() {
                           ? "pi-users"
                           : Tag.name === "custom-filter"
                           ? "pi-filter"
+                          : Tag.name === "Material-UI"
+                          ? "pi-microchip"
                           : null
                       }`}
                       style={{ fontSize: "1rem", paddingRight: "20px" }}

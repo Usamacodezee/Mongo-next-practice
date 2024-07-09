@@ -10,6 +10,8 @@ import "@/app/globals.css";
 import axios from "axios";
 import { InputTextarea } from "primereact/inputtextarea";
 import ReviewDataTable from "./ReviewComponent/ReviewDataTable";
+import { z } from "zod"; // Import Zod
+import { Message } from "primereact/message";
 
 interface ReviewComponentProps {
   ProductReview: any;
@@ -27,6 +29,18 @@ interface ReviewDataTypes {
   reviewerEmail: string;
 }
 
+// Define Zod schema
+const ReviewSchema = z.object({
+  rating: z
+    .number()
+    .min(1, "Rating must be at least 1")
+    .max(5, "Rating must be at most 5"),
+  comment: z.string().min(1, "Comment is required"),
+  date: z.date(),
+  reviewerName: z.string().min(1, "Reviewer name is required"),
+  reviewerEmail: z.string().email("Invalid email address"),
+});
+
 const ReviewComponent: React.FC<ReviewComponentProps> = ({
   ProductReview,
   setReviewModalOff,
@@ -35,6 +49,7 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
 }) => {
   const dispatch = useDispatch<AppDispatch>();
   const [UserDetails, setUserDetails] = useState("");
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [newReview, setNewReview] = useState<ReviewDataTypes>({
     rating: null,
     comment: "",
@@ -42,6 +57,7 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
     reviewerName: "",
     reviewerEmail: "",
   });
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setNewReview((prevReview: any) => ({
@@ -57,26 +73,25 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
     }));
   };
 
-  useEffect(() => {
-    const GetUserCredentials = async () => {
-      try {
-        const res = await axios.get("/api/admin/me");
-        const user = res.data.data;
-        setUserDetails(user);
-        setNewReview((prevReview) => ({
-          ...prevReview,
-          reviewerName: user.username,
-          reviewerEmail: user.email,
-        }));
-      } catch (error) {
-        console.error("failed to fetch user credentials", error);
-      }
-    };
-    GetUserCredentials();
-  }, []);
-
   const handleAddReview = () => {
-    const { reviewerName, reviewerEmail, comment, rating } = newReview;
+    const reviewData = {
+      ...newReview,
+      date: new Date(),
+    };
+    const result = ReviewSchema.safeParse(reviewData);
+
+    if (!result.success) {
+      const newErrors: { [key: string]: string } = {};
+      result.error.errors.forEach((error) => {
+        if (error.path.length > 0) {
+          newErrors[error.path[0]] = error.message;
+        }
+      });
+      setErrors(newErrors);
+      return;
+    }
+    setErrors({});
+    const { reviewerName, reviewerEmail, comment, rating } = result.data;
     const review = {
       reviewerName,
       reviewerEmail,
@@ -85,6 +100,7 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
       date: new Date(),
     };
     const productId = ProductReview._id;
+
     if (productId) {
       dispatch(addReviewAsync({ productId, review }))
         .unwrap()
@@ -109,6 +125,25 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
     }
   };
 
+  useEffect(() => {
+    const GetUserCredentials = async () => {
+      try {
+        const res = await axios.get("/api/admin/me");
+        const user = res.data.data;
+        setUserDetails(user);
+        setNewReview((prevReview) => ({
+          ...prevReview,
+          reviewerName: user.username,
+          reviewerEmail: user.email,
+        }));
+      } catch (error) {
+        console.error("failed to fetch user credentials", error);
+      }
+    };
+    GetUserCredentials();
+  }, []);
+
+  console.log("error", errors);
   return (
     <>
       <div className="container" style={{ padding: "10px 25px" }}>
@@ -138,6 +173,17 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
                 className=" mb-3 px-2 py-1"
                 style={{ pointerEvents: "none", opacity: "0.5" }}
               />
+              {errors.reviewerName && (
+                <Message
+                  style={{
+                    display: "flex",
+                    justifyContent: "start",
+                    width: "fit-content",
+                  }}
+                  severity="warn"
+                  text={errors.reviewerName}
+                />
+              )}
 
               <strong>Reviewer's email:</strong>
               <InputText
@@ -149,6 +195,17 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
                 className=" mb-3 px-2 py-1"
                 style={{ pointerEvents: "none", opacity: "0.5" }}
               />
+              {errors.reviewerEmail && (
+                <Message
+                  style={{
+                    display: "flex",
+                    justifyContent: "start",
+                    width: "fit-content",
+                  }}
+                  severity="warn"
+                  text={errors.reviewerEmail}
+                />
+              )}
 
               <strong>Description:</strong>
               <InputTextarea
@@ -159,9 +216,22 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
                 className=" mb-3 px-2 py-1"
                 style={{ height: "8rem" }}
               />
+              {errors.comment && (
+                <Message
+                  style={{
+                    display: "flex",
+                    justifyContent: "start",
+                    width: "fit-content",
+                  }}
+                  className="text-start"
+                  severity="warn"
+                  text={errors.comment}
+                />
+              )}
               <div
                 style={{
                   display: "flex",
+                  flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",
                   width: "100%",
@@ -174,6 +244,17 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
                   className="px-2 py-1"
                 />
               </div>
+              {errors.rating && (
+                <Message
+                  style={{
+                    display: "flex",
+                    justifyContent: "start",
+                    width: "fit-content",
+                  }}
+                  severity="warn"
+                  text={errors.rating}
+                />
+              )}
               <Button
                 label="Add Review"
                 onClick={handleAddReview}
