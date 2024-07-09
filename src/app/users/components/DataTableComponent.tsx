@@ -28,9 +28,10 @@ import { Dropdown } from "primereact/dropdown";
 import { Toast } from "primereact/toast";
 import { Tooltip } from "primereact/tooltip";
 import "@/app/globals.css";
+import { Skeleton } from "primereact/skeleton";
 
 interface DataTableComponentProps {
-  loading: any;
+  loading: boolean;
   fetchData: () => void;
   setLoadingOff: () => void;
   setLoadingOn: () => void;
@@ -302,263 +303,250 @@ const DataTableComponent: React.FC<DataTableComponentProps> = ({
     );
   };
 
-  const header = renderHeader();
+  // const fetchData = () => {
+  //   return new Promise((resolve) => {
+  //     setTimeout(() => {
+  //       resolve();
+  //     }, 2000);
+  //   });
+  // };
 
   return (
-    <>
+    <div className="p-mb-4">
       <Toast ref={toast} />
       <div className="card">
-        {user.length === 0 ? (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "80vh",
-            }}
-          >
-            <Image
-              src={NotFound}
-              height="200"
-              width="200"
-              alt=""
-              className="mt-1"
-            />
-            <h4>No users found!</h4>
-          </div>
-        ) : (
-          <DataTable
-            ref={dt}
-            showGridlines
-            removableSort
-            tableStyle={{
-              minWidth: "50rem",
-              width: "84vw",
-            }}
-            value={user}
-            paginator
-            rows={5}
-            rowsPerPageOptions={[5, 10, 25, 50, All]}
-            paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-            currentPageReportTemplate="{first} to {last} out of {totalRecords} users"
-            paginatorRight={paginatorRight}
-            dataKey="id"
-            filters={filters}
-            filterDisplay="row"
-            loading={loading}
-            globalFilterFields={[
-              "name",
-              "email",
-              "phone",
-              "designation.name",
-              "jobType",
-              "JobLocation",
-              "salary",
-              "ExperienceLevel",
-              "joiningDate",
-              "shiftTiming",
-            ]}
-            header={header}
-          >
-            {AddForm?.map((fields: any, index: number) => (
-              <Column
-                className="py-2"
-                key={index}
-                field={fields?.name}
-                header={
-                  <div
-                    style={{
-                      fontSize: "1rem",
-                      paddingRight: "15px",
-                      fontWeight: "bolder",
-                    }}
-                  >
-                    {fields?.label}
-                  </div>
-                }
-                sortable
-                filter={fields?.filter}
-                filterPlaceholder={`Search ${fields?.name}`}
-                filterElement={
-                  fields?.name === "designation"
-                    ? DesignationRowFilterTemplate
-                    : fields?.name === "jobType"
-                    ? JobTypeRowFilterTemplate
-                    : fields?.name === "JobLocation"
-                    ? JobLocationRowFilterTemplate
-                    : fields?.name === "ExperienceLevel"
-                    ? ExperienceLevelRowFilterTemplate
-                    : fields?.name === "shiftTiming"
-                    ? shiftTimingRowFilterTemplate
-                    : null
-                }
-                showFilterMenu={false}
-                style={{
-                  textAlign: "center",
-                  fontWeight: "600",
-                  minWidth: "15rem",
-                }}
-                body={(rowData: any) => {
-                  if (fields?.name === "name") {
-                    return (
-                      <>
-                        <Link
-                          id="userdetailsid"
-                          href={`/users/${rowData[fields?.name]}?id=${
-                            rowData._id
-                          }`}
-                        >
-                          <div className="userdetailsid">
-                            {rowData[fields?.name]}
-                          </div>
-                        </Link>
-
-                        <Tooltip target="#userdetailsid" position="top">
-                          <p className="p-1 mx-2">
-                            <i
-                              className="bi-person-circle"
-                              style={{
-                                padding: "0px 10px 0px 0px",
-                                fontSize: "1.4rem",
-                                color: "white",
-                              }}
-                            />
-                            view user details
-                          </p>
-                        </Tooltip>
-                      </>
-                    );
-                  } else if (fields?.name === "joiningDate") {
-                    const formattedDate = moment(rowData[fields?.name]).format(
-                      "Do MMM YY"
-                    );
-                    return formattedDate;
-                  } else if (fields?.name === "salary") {
-                    return (
-                      <>
-                        <span style={{ fontWeight: "600" }}>
-                          INR {rowData[fields?.name]}
-                        </span>
-                        <span style={{ fontSize: "0.7rem" }}>.00</span> /-
-                      </>
-                    );
-                  } else if (fields?.name === "phone") {
-                    return <>+91 {rowData[fields?.name]}</>;
-                  } else if (fields?.name === "noticePeriod") {
-                    return (
-                      <div
-                        style={{ display: "flex", justifyContent: "center" }}
-                      >
-                        {rowData[fields?.name] === true ? (
-                          <Tag
-                            severity="success"
-                            className=" px-4 py-2"
-                            style={{
-                              fontWeight: "bolder",
-                              backgroundColor: "#82bb51",
-                            }}
-                          >
-                            Yes
-                          </Tag>
-                        ) : (
-                          <Tag
-                            className=" px-4 py-2 "
-                            style={{
-                              fontWeight: "bolder",
-                              backgroundColor: "#ff6767",
-                            }}
-                          >
-                            No
-                          </Tag>
-                        )}
-                      </div>
-                    );
-                  } else if (fields?.name === "probationPeriod") {
-                    return (
-                      <div
-                        style={{ display: "flex", justifyContent: "center" }}
-                      >
-                        {rowData[fields?.name] === true ? (
-                          <Tag
-                            severity="success"
-                            className="px-4 py-2"
-                            style={{
-                              fontWeight: "bolder",
-                              backgroundColor: "#82bb51",
-                            }}
-                          >
-                            Yes
-                          </Tag>
-                        ) : (
-                          <Tag
-                            severity="danger"
-                            className="px-4 py-2"
-                            style={{
-                              fontWeight: "bolder",
-                              backgroundColor: "#ff6767",
-                            }}
-                          >
-                            No
-                          </Tag>
-                        )}
-                      </div>
-                    );
-                  } else if (fields?.name === "PrefferedLocations") {
-                    return (
-                      <>
-                        {rowData[fields?.name]?.map(
-                          (data: string, index: number) => (
-                            <div key={index}>
-                              <span>{data},</span>
-                            </div>
-                          )
-                        )}
-                      </>
-                    );
-                  } else if (fields?.name === "PrefferedType") {
-                    return (
-                      <div>
-                        {rowData[fields?.name]?.map(
-                          (data: string, index: number) => (
-                            <div key={index}>
-                              <span>{data},</span>
-                            </div>
-                          )
-                        )}
-                      </div>
-                    );
-                  } else if (fields?.name === "NoticePeriodDuration") {
-                    return (
-                      <>
-                        {rowData[fields?.name] === "0 months"
-                          ? "Immediate joininig"
-                          : rowData[fields?.name]
-                          ? rowData[fields?.name]
-                          : "-"}
-                      </>
-                    );
-                  } else {
-                    return <>{rowData[fields?.name]}</>;
-                  }
-                }}
-              />
-            ))}
-
+        <DataTable
+          ref={dt}
+          showGridlines
+          removableSort
+          tableStyle={{
+            minWidth: "50rem",
+            width: "84vw",
+          }}
+          value={user}
+          paginator
+          rows={5}
+          rowsPerPageOptions={[5, 10, 25, 50, All]}
+          paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+          currentPageReportTemplate="{first} to {last} out of {totalRecords} users"
+          paginatorRight={paginatorRight}
+          dataKey="id"
+          filters={filters}
+          filterDisplay="row"
+          loading={loading}
+          globalFilterFields={[
+            "name",
+            "email",
+            "phone",
+            "designation.name",
+            "jobType",
+            "JobLocation",
+            "salary",
+            "ExperienceLevel",
+            "joiningDate",
+            "shiftTiming",
+          ]}
+          header={renderHeader}
+        >
+          {AddForm?.map((fields: any, index: number) => (
             <Column
+              className="py-2"
+              key={index}
+              field={fields?.name}
               header={
-                <div style={{ fontWeight: "bolder", fontSize: "1rem" }}>
-                  actions
+                <div
+                  style={{
+                    fontSize: "1rem",
+                    paddingRight: "15px",
+                    fontWeight: "bolder",
+                  }}
+                >
+                  {fields?.label}
                 </div>
               }
-              style={{ minWidth: "5rem" }}
-              body={ActionBodyTemplate}
-              exportable={false}
+              sortable
+              filter={fields?.filter}
+              filterPlaceholder={`Search ${fields?.name}`}
+              filterElement={
+                fields?.name === "designation"
+                  ? DesignationRowFilterTemplate
+                  : fields?.name === "jobType"
+                  ? JobTypeRowFilterTemplate
+                  : fields?.name === "JobLocation"
+                  ? JobLocationRowFilterTemplate
+                  : fields?.name === "ExperienceLevel"
+                  ? ExperienceLevelRowFilterTemplate
+                  : fields?.name === "shiftTiming"
+                  ? shiftTimingRowFilterTemplate
+                  : null
+              }
+              showFilterMenu={false}
+              style={{
+                textAlign: "center",
+                fontWeight: "600",
+                minWidth: "15rem",
+              }}
+              body={(rowData: any) => {
+                if (loading) {
+                  return <Skeleton width="100%" height="2rem" />;
+                }
+                if (fields?.name === "name") {
+                  return (
+                    <>
+                      <Link
+                        id="userdetailsid"
+                        href={`/users/${rowData[fields?.name]}?id=${
+                          rowData._id
+                        }`}
+                      >
+                        <div className="userdetailsid">
+                          {rowData[fields?.name]}
+                        </div>
+                      </Link>
+
+                      <Tooltip target="#userdetailsid" position="top">
+                        <p className="p-1 mx-2">
+                          <i
+                            className="bi-person-circle"
+                            style={{
+                              padding: "0px 10px 0px 0px",
+                              fontSize: "1.4rem",
+                              color: "white",
+                            }}
+                          />
+                          view user details
+                        </p>
+                      </Tooltip>
+                    </>
+                  );
+                } else if (fields?.name === "joiningDate") {
+                  const formattedDate = moment(rowData[fields?.name]).format(
+                    "Do MMM YY"
+                  );
+                  return formattedDate;
+                } else if (fields?.name === "salary") {
+                  return (
+                    <>
+                      <span style={{ fontWeight: "600" }}>
+                        INR {rowData[fields?.name]}
+                      </span>
+                      <span style={{ fontSize: "0.7rem" }}>.00</span> /-
+                    </>
+                  );
+                } else if (fields?.name === "phone") {
+                  return <>+91 {rowData[fields?.name]}</>;
+                } else if (fields?.name === "noticePeriod") {
+                  return (
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {rowData[fields?.name] === true ? (
+                        <Tag
+                          severity="success"
+                          className=" px-4 py-2"
+                          style={{
+                            fontWeight: "bolder",
+                            backgroundColor: "#82bb51",
+                          }}
+                        >
+                          Yes
+                        </Tag>
+                      ) : (
+                        <Tag
+                          className=" px-4 py-2 "
+                          style={{
+                            fontWeight: "bolder",
+                            backgroundColor: "#ff6767",
+                          }}
+                        >
+                          No
+                        </Tag>
+                      )}
+                    </div>
+                  );
+                } else if (fields?.name === "probationPeriod") {
+                  return (
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {rowData[fields?.name] === true ? (
+                        <Tag
+                          severity="success"
+                          className="px-4 py-2"
+                          style={{
+                            fontWeight: "bolder",
+                            backgroundColor: "#82bb51",
+                          }}
+                        >
+                          Yes
+                        </Tag>
+                      ) : (
+                        <Tag
+                          severity="danger"
+                          className="px-4 py-2"
+                          style={{
+                            fontWeight: "bolder",
+                            backgroundColor: "#ff6767",
+                          }}
+                        >
+                          No
+                        </Tag>
+                      )}
+                    </div>
+                  );
+                } else if (fields?.name === "PrefferedLocations") {
+                  return (
+                    <>
+                      {rowData[fields?.name]?.map(
+                        (data: string, index: number) => (
+                          <div key={index}>
+                            <span>{data},</span>
+                          </div>
+                        )
+                      )}
+                    </>
+                  );
+                } else if (fields?.name === "PrefferedType") {
+                  return (
+                    <div>
+                      {rowData[fields?.name]?.map(
+                        (data: string, index: number) => (
+                          <div key={index}>
+                            <span>{data},</span>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  );
+                } else if (fields?.name === "NoticePeriodDuration") {
+                  return (
+                    <>
+                      {rowData[fields?.name] === "0 months"
+                        ? "Immediate joininig"
+                        : rowData[fields?.name]
+                        ? rowData[fields?.name]
+                        : "-"}
+                    </>
+                  );
+                } else {
+                  return <>{rowData[fields?.name]}</>;
+                }
+              }}
             />
-          </DataTable>
-        )}
+          ))}
+          <Column
+            body={ActionBodyTemplate}
+            style={{ textAlign: "center", minWidth: "15rem" }}
+          />
+        </DataTable>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -5,6 +5,10 @@ import Providers from "@/redux/Provider";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,26 +24,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-        <Providers>
-          <body
-            className={inter.className}
-            style={{ backgroundColor: "white" }}
-          >
-            <div style={{ display: "flex", height: "100vh" }}>
-              <div
-                className="mb-5"
-                style={{
-                  width: "100vw",
-                  height: "100%",
-                  msOverflowX:"hidden",
-                  msOverflowY:"scroll"
-                }}
-              >
-                {children}
-              </div>
+      <Providers>
+        <body className={inter.className} style={{ backgroundColor: "white" }}>
+          <div style={{ display: "flex", height: "100vh" }}>
+            <div
+              className="mb-5"
+              style={{
+                width: "100vw",
+                height: "100%",
+                msOverflowX: "hidden",
+                msOverflowY: "scroll",
+              }}
+            >
+              {children}
             </div>
-          </body>
-        </Providers>
+          </div>
+        </body>
+      </Providers>
     </html>
   );
 }

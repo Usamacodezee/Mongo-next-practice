@@ -137,18 +137,14 @@ const Users = () => {
                 />
               </Dialog>
             </div>
-            {loading ? (
-              <ProgSpinner />
-            ) : (
-              <DataTableComponent
-                setLoadingOn={() => setLoading(true)}
-                setLoadingOff={() => setLoading(false)}
-                fetchData={fetchData}
-                loading={loading}
-                HandleUpdateRecord={HandleUpdateRecord}
-                handleDeleteModal={handleDeleteModal}
-              />
-            )}
+            <DataTableComponent
+              setLoadingOn={() => setLoading(true)}
+              setLoadingOff={() => setLoading(false)}
+              fetchData={fetchData}
+              loading={loading}
+              HandleUpdateRecord={HandleUpdateRecord}
+              handleDeleteModal={handleDeleteModal}
+            />
           </div>
           <div className="card flex justify-content-center">
             <Dialog
