@@ -9,17 +9,30 @@ import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ListIcon from "@mui/icons-material/List";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import HomeIcon from "@mui/icons-material/Home";
+import InventoryIcon from "@mui/icons-material/Inventory";
+import GroupIcon from "@mui/icons-material/Group";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import GridViewIcon from "@mui/icons-material/GridView";
+import Link from "next/link";
+import SkeletonComponent from "./Skeleton";
 
-const drawerWidth = 240;
+const drawerWidth = 280;
+
+const LinkList = [
+  "dashboard",
+  "products",
+  "users",
+  "custom-filter",
+  "Material-UI",
+];
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
   open?: boolean;
@@ -94,10 +107,10 @@ export default function SideDrawer() {
             edge="start"
             sx={{ mr: 2, ...(open && { display: "none" }) }}
           >
-            <MenuIcon />
+            <ListIcon fontSize="large" />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Persistent drawer
+            Material UI
           </Typography>
         </Toolbar>
       </AppBar>
@@ -114,47 +127,53 @@ export default function SideDrawer() {
         anchor="left"
         open={open}
       >
-        <DrawerHeader>
-          <Typography variant="h6" noWrap component="div">
-            Sidebar
+        <DrawerHeader style={{ justifyContent: "space-between" }}>
+          <Typography variant="h5" noWrap component="div">
+            Material UI
           </Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
+              <KeyboardDoubleArrowLeftIcon fontSize="large" />
             ) : (
-              <ChevronRightIcon />
+              <KeyboardDoubleArrowRightIcon fontSize="large" />
             )}
           </IconButton>
         </DrawerHeader>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
+          {LinkList.map((text, index) => (
+            <Link
+              key={text}
+              href={`/${text}`}
+              className="nav-link"
+              aria-current="page"
+            >
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {text === "dashboard" ? (
+                      <HomeIcon />
+                    ) : text === "products" ? (
+                      <InventoryIcon />
+                    ) : text === "users" ? (
+                      <GroupIcon />
+                    ) : text === "custom-filter" ? (
+                      <FilterAltIcon />
+                    ) : text === "Material-UI" ? (
+                      <GridViewIcon />
+                    ) : null}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
           ))}
         </List>
         <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
+        <SkeletonComponent />
       </Main>
     </Box>
   );
