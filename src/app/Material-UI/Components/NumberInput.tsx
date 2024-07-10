@@ -2,7 +2,7 @@ import React from "react";
 import { TextField } from "@mui/material";
 
 const NumberInput = ({ value, onChange, ...rest }) => {
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: any) => {
     const val = e.target.value;
     if (!isNaN(val)) {
       onChange && onChange(e, parseFloat(val));

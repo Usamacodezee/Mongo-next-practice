@@ -300,7 +300,7 @@ const UserForm: React.FC<UserFormProps> = ({
                   const Component =
                     fieldComponents[field?.fieldType] || InputText;
                   return (
-                    <div className="col-md-12 col-xl-12 form-group" key={index}>
+                    <div className={field?.inputSize}>
                       <label className="fw-bold mb-1" htmlFor={field?.name}>
                         {field?.label ? field?.label : field?.name}
                         <span className="text-danger">*</span>
@@ -319,7 +319,7 @@ const UserForm: React.FC<UserFormProps> = ({
                               type={field?.inputType}
                               placeholder={field?.placeHolder}
                               className="p-inputtext-lg px-3 py-2"
-                              style={{ width: "inherit" }}
+                              // style={{ width: "inherit" }}
                               onChange={(e: any) => {
                                 let newValue;
                                 if (isArrayValue) {

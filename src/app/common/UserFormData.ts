@@ -100,6 +100,7 @@ const AddForm = [
     inputType: "String",
     fieldType: "InputText",
     filter: "filter",
+    inputSize: "col-md-12 col-xl-6 form-group",
   },
   {
     id: 2,
@@ -109,6 +110,7 @@ const AddForm = [
     inputType: "String",
     fieldType: "InputText",
     filter: "filter",
+    inputSize: "col-md-12 col-xl-6 form-group",
   },
   {
     id: 3,
@@ -118,6 +120,7 @@ const AddForm = [
     inputType: "string",
     fieldType: "InputText",
     filter: "filter",
+    inputSize: "col-md-12 col-xl-6 form-group",
   },
   {
     id: 4,
@@ -127,6 +130,7 @@ const AddForm = [
     inputType: "Number",
     fieldType: "InputText",
     filter: "filter",
+    inputSize: "col-md-12 col-xl-6 form-group",
   },
   {
     id: 5,
@@ -136,7 +140,6 @@ const AddForm = [
     inputType: "string",
     fieldType: "Dropdown",
     filter: "filter",
-    filterElement: "DesignationRowFIlterTemplate",
     options: [
       { name: "ReactJs developer", code: "RD" },
       { name: "Web designer", code: "WD" },
@@ -150,6 +153,7 @@ const AddForm = [
       { name: "Project coordinator", code: "PC" },
       { name: "Project manager", code: "PM" },
     ],
+    inputSize: "col-md-12 col-xl-6 form-group",
   },
   {
     id: 6,
@@ -165,6 +169,7 @@ const AddForm = [
       { name: "Internship", code: "Internship" },
       { name: "Freelancer", code: "Freelancer" },
     ],
+    inputSize: "col-md-12 col-xl-6 form-group",
   },
   {
     id: 7,
@@ -179,6 +184,7 @@ const AddForm = [
       { name: "Remote", code: "Remote" },
       { name: "Hybrid", code: "Hybrid" },
     ],
+    inputSize: "col-md-12 col-xl-6 form-group",
   },
   {
     id: 8,
@@ -194,6 +200,7 @@ const AddForm = [
       { name: "senior level", code: "senior level" },
       { name: "executive level", code: "executive level" },
     ],
+    inputSize: "col-md-12 col-xl-6 form-group",
   },
   {
     id: 9,
@@ -203,6 +210,7 @@ const AddForm = [
     inputType: "Number",
     fieldType: "InputText",
     filter: "filter",
+    inputSize: "col-md-12 col-xl-6 form-group",
   },
   {
     id: 10,
@@ -213,6 +221,7 @@ const AddForm = [
     fieldType: "Calender",
     showButtonBar: "showButtonBar",
     dateFormat: "dd/mm/yy",
+    inputSize: "col-md-12 col-xl-6 form-group",
   },
   {
     id: 11,
@@ -228,6 +237,7 @@ const AddForm = [
       { name: "night shift", code: "NS" },
       { name: "first shift", code: "FS" },
     ],
+    inputSize: "col-md-12 col-xl-6 form-group",
   },
   {
     id: 12,
@@ -240,6 +250,7 @@ const AddForm = [
       { name: true, code: "Yes" },
       { name: false, code: "No" },
     ],
+    inputSize: "col-md-12 col-xl-6 form-group",
   },
   {
     id: 13,
@@ -252,6 +263,7 @@ const AddForm = [
       { name: true, code: "Yes" },
       { name: false, code: "no" },
     ],
+    inputSize: "col-md-12 col-xl-6 form-group",
   },
   {
     id: 14,
@@ -277,6 +289,7 @@ const AddForm = [
       { name: "11 months", code: "11M" },
       { name: "12 months", code: "12M" },
     ],
+    inputSize: "col-md-12 col-xl-6 form-group",
   },
   {
     id: 15,
@@ -295,6 +308,7 @@ const AddForm = [
       { name: "Mumbai", code: "Mum" },
     ],
     maxSelectedLabels: 3,
+    inputSize: "col-md-12 col-xl-6 form-group",
     display: "chip",
   },
   {
@@ -312,6 +326,7 @@ const AddForm = [
       { name: "Extras", code: "EsX" },
     ],
     maxSelectedLabels: 3,
+    inputSize: "col-md-12 col-xl-6 form-group",
     display: "chip",
   },
 ];
