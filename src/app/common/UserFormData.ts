@@ -82,6 +82,15 @@ export const NoticePeriodDurationOptions = [
   { name: "12 months", code: "12M" },
 ];
 
+export const Locations = [
+  { name: "Surat", code: "ST" },
+  { name: "Bharuch", code: "BH" },
+  { name: "Vadodara", code: "VD" },
+  { name: "Ahmedabad", code: "AMD" },
+  { name: "Ankleswar", code: "Ank" },
+  { name: "Karjan", code: "KJ" },
+  { name: "Mumbai", code: "Mum" },
+];
 const AddForm = [
   {
     id: 1,
