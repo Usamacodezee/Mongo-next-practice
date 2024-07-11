@@ -2,7 +2,8 @@
 import type { FC } from "react";
 import RadioButtonGroup from "./Components/RadioGroup";
 import SideDrawer from "./Components/SideDrawer";
-import UserAddForm from "./Components/UserAddForm";
+import UserFormStepper from "./Components/UserFormStepper";
+// import DatePickerComponent from "./Components/ProgressBar"
 
 interface pageProps {}
 
@@ -11,8 +12,11 @@ const page: FC<pageProps> = ({}) => {
     <div>
       <SideDrawer />
       <div className="container pb-4">
+        {/* <DatePickerComponent /> */}
         <RadioButtonGroup />
-        <UserAddForm />
+      </div>
+      <div className="container py-4">
+        <UserFormStepper />
       </div>
     </div>
   );

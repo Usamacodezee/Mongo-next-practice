@@ -29,7 +29,6 @@ interface ReviewDataTypes {
   reviewerEmail: string;
 }
 
-// Define Zod schema
 const ReviewSchema = z.object({
   rating: z
     .number()

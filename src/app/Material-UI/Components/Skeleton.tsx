@@ -57,8 +57,8 @@ const Media = ({ loading = true }: MediaProps) => {
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
         {loading
-          ? Array.from(new Array(4)).map((_, index) => (
-              <Grid item key={index} xs={12} sm={12} md={3} lg={3}>
+          ? Array.from(new Array(5)).map((_, index) => (
+              <Grid item key={index} xs={12} sm={12} md={3} lg={2.4}>
                 <Box sx={{ textAlign: "center" }}>
                   <Box
                     sx={{
@@ -82,13 +82,13 @@ const Media = ({ loading = true }: MediaProps) => {
                     <Skeleton
                       animation="wave"
                       variant="rectangular"
-                      width={305}
-                      height={305}
+                      width={175}
+                      height={175}
                       sx={{ borderRadius: "25px" }}
                     />
                   </Box>
                   <Box sx={{ pt: 0.5 }}>
-                    <Skeleton className="py-2" animation="wave" width="90%" />
+                    <Skeleton className="py-1" animation="wave" width="90%" />
                     <Box
                       sx={{
                         pt: 2,
@@ -105,7 +105,6 @@ const Media = ({ loading = true }: MediaProps) => {
                         pt: 2,
                       }}
                     >
-                      <Skeleton animation="wave" width="100%" />
                       <Skeleton animation="wave" width="100%" />
                       <Skeleton animation="wave" width="80%" />
                     </Box>
@@ -140,8 +139,8 @@ const Media = ({ loading = true }: MediaProps) => {
                         alignItems: "center",
                       }}
                     >
-                      <Skeleton className="py-3" animation="wave" width="40%" />
-                      <Skeleton className="py-3" animation="wave" width="30%" />
+                      <Skeleton className="py-2" animation="wave" width="40%" />
+                      <Skeleton className="py-2" animation="wave" width="30%" />
                     </Box>
                     <Box
                       sx={{
@@ -151,8 +150,16 @@ const Media = ({ loading = true }: MediaProps) => {
                         alignItems: "center",
                       }}
                     >
-                      <Skeleton className="py-3" animation="wave" width="25%" />
-                      <Skeleton className="py-3" animation="wave" width="25%" />
+                      <Skeleton
+                        className="py-2 mx-1"
+                        animation="wave"
+                        width="25%"
+                      />
+                      <Skeleton
+                        className="py-2 mx-1"
+                        animation="wave"
+                        width="25%"
+                      />
                     </Box>
                   </Box>
                 </Box>
@@ -165,13 +172,14 @@ const Media = ({ loading = true }: MediaProps) => {
                 key={product._id}
                 container
                 xs={12}
-                sm={12}
+                sm={6}
                 md={4}
                 lg={3}
-                className="my-2"
+                xl={2.4}
+                className="my-1"
               >
                 <Box
-                  className="p-3"
+                  className="p-2"
                   style={{ backgroundColor: "#ebebeb", borderRadius: "20px" }}
                 >
                   <Box sx={{ display: "flex", justifyContent: "end" }}>
@@ -189,7 +197,7 @@ const Media = ({ loading = true }: MediaProps) => {
                     />
                     <Typography
                       gutterBottom
-                      variant="body1"
+                      variant="subtitle1"
                       style={{ display: "contents" }}
                     >
                       <span>(</span>
@@ -199,14 +207,16 @@ const Media = ({ loading = true }: MediaProps) => {
                   </Box>
                   <Box sx={{ textAlign: "center" }}>
                     <Image
-                      height="225"
-                      width="225"
+                      height="175"
+                      width="175"
                       alt={product.name}
                       src={product.image}
                     />
                     <Box sx={{ pt: 0.5, textAlign: "justify" }}>
                       <Typography gutterBottom variant="h6">
-                        {product.name}
+                        {product?.name && product.name.length > 29
+                          ? `${product.name.substring(0, 29)}...`
+                          : product?.name}
                       </Typography>
 
                       <Grid
@@ -220,7 +230,7 @@ const Media = ({ loading = true }: MediaProps) => {
                       >
                         <Typography
                           display="block"
-                          variant="h6"
+                          variant="subtitle1"
                           sx={{ color: "#1098c4" }}
                         >
                           {product.brand}
@@ -247,12 +257,16 @@ const Media = ({ loading = true }: MediaProps) => {
                         color="text.secondary"
                         sx={{
                           color: "black",
-                          paddingTop: "30px",
+                          paddingTop: "8px",
                           textAlign: "justify",
+                          overflowWrap: "break-word",
                         }}
                       >
-                        {product?.description}
+                        {product?.description && product.description.length > 79
+                          ? `${product.description.substring(0, 79)}...`
+                          : product?.description}
                       </Typography>
+
                       <Box
                         sx={{
                           display: "flex",
@@ -263,7 +277,7 @@ const Media = ({ loading = true }: MediaProps) => {
                           {product?.tags?.map((Tag: any, index: number) => (
                             <Chip
                               key={index}
-                              className="mt-2 mx-1 p-1"
+                              className="mt-1 mx-1 p-1"
                               variant="outlined"
                               color="info"
                               label={Tag}
@@ -272,7 +286,7 @@ const Media = ({ loading = true }: MediaProps) => {
                         </Box>
                         <Box>
                           <Chip
-                            className="mt-2 mx-1 p-1"
+                            className="mt-1 mx-1 p-1"
                             variant="outlined"
                             color="success"
                             label={product?.category}
@@ -294,21 +308,21 @@ const Media = ({ loading = true }: MediaProps) => {
                       </Box>
                       <Box>
                         <Chip
-                          className="mt-3 mx-1 p-1"
+                          className="mt-1 mx-1 p-1"
                           variant="outlined"
                           color="secondary"
                           label={product?.warrantyInformation}
                           icon={<ShieldOutlinedIcon />}
                         />
                         <Chip
-                          className="mt-3 mx-1 p-1"
+                          className="mt-1 mx-1 p-1"
                           variant="outlined"
                           color="secondary"
                           label={product?.shippingInformation}
                           icon={<LocalShippingOutlinedIcon />}
                         />
                         <Chip
-                          className="mt-3 mx-1 p-1"
+                          className="mt-1 mx-1 p-1"
                           variant="outlined"
                           color="secondary"
                           label={product?.returnPolicy}
@@ -320,7 +334,7 @@ const Media = ({ loading = true }: MediaProps) => {
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "space-between",
-                          paddingTop: "30px",
+                          paddingY: "20px",
                           height: "",
                         }}
                       >
@@ -330,9 +344,9 @@ const Media = ({ loading = true }: MediaProps) => {
                             alignItems: "center",
                           }}
                         >
-                          <CurrencyRupeeOutlinedIcon fontSize="large" />
+                          <CurrencyRupeeOutlinedIcon fontSize="small" />
                           <Typography
-                            variant="h4"
+                            variant="h5"
                             color="text.secondary"
                             sx={{
                               color: "black",
@@ -347,16 +361,11 @@ const Media = ({ loading = true }: MediaProps) => {
                             alignItems: "center",
                           }}
                         >
-                          <Typography variant="h4" color="green">
+                          <Typography variant="h6" color="green">
                             {product?.discountPercentage} % Off
                           </Typography>
                         </Box>
                       </Box>
-                      <Divider
-                        orientation="vertical"
-                        variant="middle"
-                        flexItem
-                      />
                     </Box>
                   </Box>
                   <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
@@ -364,7 +373,7 @@ const Media = ({ loading = true }: MediaProps) => {
                       color="primary"
                       variant="outlined"
                       className="mx-1"
-                      size="large"
+                      size="small"
                       startIcon={<AddShoppingCartIcon />}
                     >
                       Add to cart
@@ -373,7 +382,7 @@ const Media = ({ loading = true }: MediaProps) => {
                       color="success"
                       variant="contained"
                       className="mx-1"
-                      size="large"
+                      size="small"
                       startIcon={<ShoppingBagIcon />}
                     >
                       buy now
