@@ -13,12 +13,10 @@ const page: FC<pageProps> = ({}) => {
   return (
     <div>
       <div className="container py-4 pb-4">
-        {/* <DatePickerComponent /> */}
       <SideDrawer />
         <DataTable />
       </div>
       <div className="container pb-4" style={{display: "flex", justifyContent: "space-around"}}>
-        {/* <DatePickerComponent /> */}
         <RadioButtonGroup />
         <AvatarComponent />
         <SnackBarComponent />

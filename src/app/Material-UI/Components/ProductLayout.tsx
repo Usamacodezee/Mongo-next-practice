@@ -24,6 +24,18 @@ interface ProductLayoutProps {
 }
 
 const ProductLayout: FC<ProductLayoutProps> = ({ product }) => {
+  console.log("product", product);
+  console.log("product reviews", product?.reviews?.length);
+  console.log("product rating", product?.rating);
+
+  const averageRating = product?.reviews?.length
+    ? product.reviews.reduce(
+        (acc: number, review: any) => acc + review.rating,
+        0
+      ) / product.reviews.length
+    : 0;
+  console.log("average rating", averageRating);
+
   return (
     <>
       <Box
@@ -33,9 +45,10 @@ const ProductLayout: FC<ProductLayoutProps> = ({ product }) => {
         <Box sx={{ display: "flex", justifyContent: "end" }}>
           <Rating
             name="text-feedback"
-            value={product?.rating}
+            value={averageRating}
             readOnly
             precision={0.5}
+            size="small"
             emptyIcon={
               <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
             }
@@ -52,13 +65,13 @@ const ProductLayout: FC<ProductLayoutProps> = ({ product }) => {
         </Box>
         <Box sx={{ textAlign: "center" }}>
           <Image
-            height="150"
-            width="150"
+            height="130"
+            width="130"
             alt={product.name}
             src={product.image}
           />
           <Box sx={{ pt: 0.5, textAlign: "justify" }}>
-            <Typography gutterBottom variant="h6">
+            <Typography gutterBottom variant="body1" fontWeight="bold">
               {product?.name && product.name.length > 24
                 ? `${product.name.substring(0, 24)}...`
                 : product?.name}
@@ -75,7 +88,7 @@ const ProductLayout: FC<ProductLayoutProps> = ({ product }) => {
             >
               <Typography
                 display="block"
-                variant="subtitle1"
+                variant="body2"
                 sx={{ color: "#1098c4" }}
               >
                 {product.brand}
@@ -99,7 +112,7 @@ const ProductLayout: FC<ProductLayoutProps> = ({ product }) => {
               color="text.secondary"
               sx={{
                 color: "black",
-                paddingTop: "8px",
+                paddingY: "8px",
                 textAlign: "justify",
                 overflowWrap: "break-word",
               }}
@@ -191,9 +204,10 @@ const ProductLayout: FC<ProductLayoutProps> = ({ product }) => {
                   alignItems: "center",
                 }}
               >
-                <CurrencyRupeeOutlinedIcon fontSize="small" />
+                <CurrencyRupeeOutlinedIcon fontSize="inherit" />
                 <Typography
-                  variant="h6"
+                  variant="body1"
+                  fontWeight="bold"
                   color="text.secondary"
                   sx={{
                     color: "black",
@@ -208,7 +222,7 @@ const ProductLayout: FC<ProductLayoutProps> = ({ product }) => {
                   alignItems: "center",
                 }}
               >
-                <Typography variant="body1" color="green">
+                <Typography variant="body1" fontWeight="bold" color="green">
                   {product?.discountPercentage} % Off
                 </Typography>
               </Box>
