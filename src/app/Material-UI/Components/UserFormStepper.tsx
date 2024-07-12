@@ -305,7 +305,7 @@ export default function UserFormStepper() {
     );
   };
 
-  const JobPrefferences = () => {
+  const JobPrefferences = (PrefferedLocations: any) => {
     return (
       <>
         <Box sx={{ display: "flex" }} className="mt-2">
@@ -422,7 +422,7 @@ export default function UserFormStepper() {
         </Box>
       ) : (
         <Box height="90%" sx={{display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-          <Typography sx={{ mt: 2, mb: 1 }}>
+          <Box sx={{ mt: 2, mb: 1 }}>
             {activeStep === 0 ? (
               <PersonalDetails />
             ) : activeStep === 1 ? (
@@ -430,7 +430,7 @@ export default function UserFormStepper() {
             ) : activeStep === 2 ? (
               <JobPrefferences />
             ) : null}
-          </Typography>
+          </Box>
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
             <Button
               color="inherit"

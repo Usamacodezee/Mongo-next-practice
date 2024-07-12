@@ -2,12 +2,12 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
-import { UserTypes } from '@/app/common/UserFormData';
 import axios from 'axios';
-import { blue, deepOrange, green } from '@mui/material/colors';
+import { grey } from '@mui/material/colors';
+import { ProductTypes } from '@/app/common/ProductFormData';
 
 export default function AvatarComponent() {
-  const [Products, setProducts] = React.useState<UserTypes[]>([]);
+  const [Products, setProducts] = React.useState<ProductTypes[]>([]);
   const [error, setError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
@@ -29,7 +29,7 @@ export default function AvatarComponent() {
     <Box sx={{ display: 'flex', justifyContent: 'center', p: 2 }}>
       <AvatarGroup total={Products.length}>
         {Products.map((product, index) => (
-      <Avatar key={index}  sx={{ bgcolor: blue[500] }}  alt={product.name} src={product.image} />
+      <Avatar key={index}  sx={{ bgcolor: grey[400] }}  alt={product.name} src={product.image} />
         ))}
     </AvatarGroup>
     </Box>
