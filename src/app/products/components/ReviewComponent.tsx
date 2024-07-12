@@ -12,6 +12,7 @@ import { InputTextarea } from "primereact/inputtextarea";
 import ReviewDataTable from "./ReviewComponent/ReviewDataTable";
 import { z } from "zod"; // Import Zod
 import { Message } from "primereact/message";
+import { Alert } from "@mui/material";
 
 interface ReviewComponentProps {
   ProductReview: any;
@@ -173,15 +174,9 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
                 style={{ pointerEvents: "none", opacity: "0.5" }}
               />
               {errors.reviewerName && (
-                <Message
-                  style={{
-                    display: "flex",
-                    justifyContent: "start",
-                    width: "fit-content",
-                  }}
-                  severity="warn"
-                  text={errors.reviewerName}
-                />
+                <>
+                <Alert className="p-0" severity="error">{errors.reviewerName}</Alert>
+                </>
               )}
 
               <strong>Reviewer's email:</strong>
@@ -195,15 +190,7 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
                 style={{ pointerEvents: "none", opacity: "0.5" }}
               />
               {errors.reviewerEmail && (
-                <Message
-                  style={{
-                    display: "flex",
-                    justifyContent: "start",
-                    width: "fit-content",
-                  }}
-                  severity="warn"
-                  text={errors.reviewerEmail}
-                />
+                <Alert className="p-0" severity="error">{errors.reviewerEmail}</Alert>
               )}
 
               <strong>Description:</strong>
@@ -212,20 +199,13 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
                 placeholder="Provide description"
                 value={newReview.comment || ""}
                 onChange={handleChange}
-                className=" mb-3 px-2 py-1"
+                className=" mb-1 px-2 py-1"
                 style={{ height: "8rem" }}
               />
               {errors.comment && (
-                <Message
-                  style={{
-                    display: "flex",
-                    justifyContent: "start",
-                    width: "fit-content",
-                  }}
-                  className="text-start"
-                  severity="warn"
-                  text={errors.comment}
-                />
+                <>
+                <Alert className="p-0" severity="error">{errors.comment}</Alert>
+                </>
               )}
               <div
                 style={{
@@ -244,15 +224,7 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
                 />
               </div>
               {errors.rating && (
-                <Message
-                  style={{
-                    display: "flex",
-                    justifyContent: "start",
-                    width: "fit-content",
-                  }}
-                  severity="warn"
-                  text={errors.rating}
-                />
+                <Alert className="p-0" severity="error">{errors.rating}</Alert>
               )}
               <Button
                 label="Add Review"

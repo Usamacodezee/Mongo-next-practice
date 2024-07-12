@@ -173,7 +173,7 @@ const Users = () => {
               <Dialog
                 visible={ReviewModal}
                 maximizable
-                style={{ width: "55%", height: "58%", borderRadius: "10px" }}
+                style={{ width: "55%", height: "62%", borderRadius: "10px" }}
                 onHide={() => {
                   if (!ReviewModal) return;
                   setReviewModal(false);
