@@ -5,21 +5,21 @@ import SideDrawer from "./Components/SideDrawer";
 import UserFormStepper from "./Components/UserFormStepper";
 import DataTable from "./Components/DataTable";
 import AvatarComponent from "./Components/AvatarComponent";
+import SnackBarComponent from "./Components/SnackBarComponent";
 
 interface pageProps {}
 
 const page: FC<pageProps> = ({}) => {
   return (
     <div>
+      <div className="container py-4 pb-4">
       <SideDrawer />
-      <div className="container pb-4">
-        {/* <DatePickerComponent /> */}
         <DataTable />
       </div>
       <div className="container pb-4" style={{display: "flex", justifyContent: "space-around"}}>
-        {/* <DatePickerComponent /> */}
         <RadioButtonGroup />
         <AvatarComponent />
+        <SnackBarComponent />
       </div>
       <div className="container py-4">
         <UserFormStepper />

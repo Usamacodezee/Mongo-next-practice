@@ -22,7 +22,7 @@ import GroupIcon from "@mui/icons-material/Group";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import GridViewIcon from "@mui/icons-material/GridView";
 import Link from "next/link";
-import SkeletonComponent from "./Skeleton";
+import ProductDataTable from "./ProductDataTable";
 
 const drawerWidth = 280;
 
@@ -173,7 +173,7 @@ export default function SideDrawer() {
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        <SkeletonComponent />
+        <ProductDataTable />
       </Main>
     </Box>
   );

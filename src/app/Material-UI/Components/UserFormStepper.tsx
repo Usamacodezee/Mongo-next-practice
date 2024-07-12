@@ -5,7 +5,16 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Chip, FormControlLabel, InputLabel, MenuItem, OutlinedInput, Radio, RadioGroup, TextField } from "@mui/material";
+import {
+  Chip,
+  FormControlLabel,
+  InputLabel,
+  MenuItem,
+  OutlinedInput,
+  Radio,
+  RadioGroup,
+  TextField,
+} from "@mui/material";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import {
   DesignationOptions,
@@ -14,9 +23,9 @@ import {
   ExperienceLevelOptions,
   shiftTimingOptions,
   NoticePeriodDurationOptions,
-  Locations
+  Locations,
 } from "@/app/common/UserFormData";
-import { Theme, useTheme } from '@mui/material/styles';
+import { Theme, useTheme } from "@mui/material/styles";
 
 const steps = ["Personal Details", "Job Details", "Job Prefferences"];
 
@@ -31,11 +40,14 @@ const MenuProps = {
   },
 };
 
-
-function getStyles(name: string, personName: readonly string[], theme: Theme) {
+function getStyles(
+  name: string,
+  PrefferedLocations: readonly string[],
+  theme: Theme
+) {
   return {
     fontWeight:
-      personName.indexOf(name) === -1
+      PrefferedLocations.indexOf(name) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
   };
@@ -49,41 +61,57 @@ export default function UserFormStepper() {
   const [JobLocation, setJobLocation] = React.useState("");
   const [ExperienceLevel, setExperienceLevel] = React.useState("");
   const [shiftTiming, setShiftTiming] = React.useState("");
-  const [ NoticePeriodDuration, setNoticePeriodDuration] = React.useState("");
-  const [PrefferedLocations, setPrefferedLocations] = React.useState<string[]>([]);
-  const [ PrefferedType, setPrefferedType] = React.useState<string[]>([]);
-  
+  const [NoticePeriodDuration, setNoticePeriodDuration] = React.useState("");
+  const [PrefferedLocations, setPrefferedLocations] = React.useState<string[]>(
+    []
+  );
+  const [PrefferedType, setPrefferedType] = React.useState<string[]>([]);
 
   const handleChange = (event: SelectChangeEvent) => {
-    setDesignation(event.target.value as string);
-    setJobType(event.target.value as string);
-    setJobLocation(event.target.value as string);
-    setExperienceLevel(event.target.value as string);
-    setShiftTiming(event.target.value as string);
-    setNoticePeriodDuration(event.target.value as string);
+    const { name, value } = event.target;
+    switch (name) {
+      case "designation":
+        setDesignation(value);
+        break;
+      case "jobType":
+        setJobType(value);
+        break;
+      case "JobLocation":
+        setJobLocation(value);
+        break;
+      case "ExperienceLevel":
+        setExperienceLevel(value);
+        break;
+      case "shiftTiming":
+        setShiftTiming(value);
+        break;
+      case "NoticePeriodDuration":
+        setNoticePeriodDuration(value);
+        break;
+      default:
+        break;
+    }
   };
 
   const theme = useTheme();
 
-  const handlePrefferedLocationChange = (event: SelectChangeEvent<typeof PrefferedLocations>) => {
+  const handlePrefferedLocationChange = (
+    event: SelectChangeEvent<typeof PrefferedLocations>
+  ) => {
     const {
       target: { value },
     } = event;
-    setPrefferedLocations(
-      typeof value === 'string' ? value.split(',') : value,
-    );
+    setPrefferedLocations(typeof value === "string" ? value.split(",") : value);
   };
 
-  const handleMultiChange = (event: SelectChangeEvent<typeof NoticePeriodDuration>) => {
+  const handleMultiChange = (
+    event: SelectChangeEvent<typeof NoticePeriodDuration>
+  ) => {
     const {
       target: { value },
     } = event;
-    setPrefferedLocations(
-      typeof value === 'string' ? value.split(',') : value,
-    );
-    setPrefferedLocations(
-      typeof value === 'string' ? value.split(',') : value,
-    );
+    setPrefferedLocations(typeof value === "string" ? value.split(",") : value);
+    setPrefferedLocations(typeof value === "string" ? value.split(",") : value);
   };
 
   const handleNext = () => {
@@ -220,27 +248,27 @@ export default function UserFormStepper() {
         </Box>
         <Box sx={{ display: "flex" }} className="mt-4">
           <Box sx={{ width: "25%" }} className="mx-1">
-      <Typography>Income details (monthly)</Typography>
+            <Typography>Income details (monthly)</Typography>
             <TextField
               id="salary"
               type="number"
               style={{ width: "100%" }}
               placeholder="Enter Your Salary ( Monthly )"
             />
-      </Box>
-      <Box sx={{ width: "35%" }} className="mx-1">
-    <Typography>Date of Joining</Typography>
-    <TextField
-      id="joiningDate"
-      type="date"
-      InputLabelProps={{
-        shrink: true,
-      }}
-      style={{ width: "100%" }}
-      placeholder="Enter Date of Joining"
-    />
-  </Box>
-  <Box sx={{ width: "40%" }} className="mx-1">
+          </Box>
+          <Box sx={{ width: "35%" }} className="mx-1">
+            <Typography>Date of Joining</Typography>
+            <TextField
+              id="joiningDate"
+              type="date"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              style={{ width: "100%" }}
+              placeholder="Enter Date of Joining"
+            />
+          </Box>
+          <Box sx={{ width: "40%" }} className="mx-1">
             <Typography>Job location</Typography>
             <Select
               labelId="shiftTiming"
@@ -257,7 +285,7 @@ export default function UserFormStepper() {
               ))}
             </Select>
           </Box>
-    </Box>
+        </Box>
         <Box sx={{ display: "flex" }} className="mt-4">
           <Box sx={{ width: "50%" }} className="mx-1">
             <Typography>Notice period duration</Typography>
@@ -269,36 +297,38 @@ export default function UserFormStepper() {
               onChange={handleChange}
               style={{ width: "100%" }}
             >
-              {NoticePeriodDurationOptions.map((NoticePeriodDuration, index) => (
-                <MenuItem key={index} value={NoticePeriodDuration.name}>
-                  {NoticePeriodDuration.name}
-                </MenuItem>
-              ))}
+              {NoticePeriodDurationOptions.map(
+                (NoticePeriodDuration, index) => (
+                  <MenuItem key={index} value={NoticePeriodDuration.name}>
+                    {NoticePeriodDuration.name}
+                  </MenuItem>
+                )
+              )}
             </Select>
           </Box>
           <Box sx={{ width: "25%" }} className="mx-1">
             <Typography>Serving notice period</Typography>
-             <RadioGroup
-        row
-        aria-labelledby="noticePeriod"
-        name="noticePeriod"
-        sx={{display: "flex", justifyContent:"space-evenly"}}
-      >
-        <FormControlLabel value={true} control={<Radio/>} label="Yes" />
-        <FormControlLabel value={false} control={<Radio />} label="No" />
-      </RadioGroup>
+            <RadioGroup
+              row
+              aria-labelledby="noticePeriod"
+              name="noticePeriod"
+              sx={{ display: "flex", justifyContent: "space-evenly" }}
+            >
+              <FormControlLabel value={true} control={<Radio />} label="Yes" />
+              <FormControlLabel value={false} control={<Radio />} label="No" />
+            </RadioGroup>
           </Box>
           <Box sx={{ width: "25%" }} className="mx-1">
             <Typography>Serving probation period</Typography>
-             <RadioGroup
-        row
-        aria-labelledby="probationPeriod"
-        name="probationPeriod"
-        sx={{display: "flex", justifyContent:"space-evenly"}}
-      >
-        <FormControlLabel value={true} control={<Radio/>} label="Yes" />
-        <FormControlLabel value={false} control={<Radio />} label="No" />
-      </RadioGroup>
+            <RadioGroup
+              row
+              aria-labelledby="probationPeriod"
+              name="probationPeriod"
+              sx={{ display: "flex", justifyContent: "space-evenly" }}
+            >
+              <FormControlLabel value={true} control={<Radio />} label="Yes" />
+              <FormControlLabel value={false} control={<Radio />} label="No" />
+            </RadioGroup>
           </Box>
         </Box>
       </>
@@ -310,31 +340,36 @@ export default function UserFormStepper() {
       <>
         <Box sx={{ display: "flex" }} className="mt-2">
           <Box sx={{ width: "50%" }} className="mx-1">
-            <Typography>Preferred Job Types</Typography>
+            <Typography>Preferred Job Locations</Typography>
             <Select
               labelId="PrefferedLocations"
               id="PrefferedLocations"
-              sx={{width: "100%"}}
+              sx={{ width: "100%" }}
               multiple
               value={PrefferedLocations}
-              onChange={handleMultiChange}
-              input={<OutlinedInput id="select-multiple-chip" label="Preferred Job Locations" />}
+              onChange={handlePrefferedLocationChange}
+              input={
+                <OutlinedInput
+                  id="select-multiple-chip"
+                  label="Preferred Job Locations"
+                />
+              }
               renderValue={(selected) => (
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                  {Locations.map((value: any) => (
-                    <Chip key={value.name} label={value.name} />
+                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                  {selected.map((value) => (
+                    <Chip key={value} label={value} />
                   ))}
                 </Box>
               )}
               MenuProps={MenuProps}
             >
-              {Locations.map((jobType) => (
+              {Locations.map((location) => (
                 <MenuItem
-                  key={jobType.name}
-                  value={jobType.name}
-                  style={getStyles(jobType.name, PrefferedLocations, theme)}
+                  key={location.name}
+                  value={location.name}
+                  style={getStyles(location.name, PrefferedLocations, theme)}
                 >
-                  {jobType.name}
+                  {location.name}
                 </MenuItem>
               ))}
             </Select>
@@ -344,25 +379,30 @@ export default function UserFormStepper() {
             <Select
               labelId="PrefferedType"
               id="PrefferedType"
-              sx={{width: "100%"}}
+              sx={{ width: "100%" }}
               multiple
               value={PrefferedType}
-              onChange={handlePrefferedLocationChange}
-              input={<OutlinedInput id="select-multiple-chip" label="Preferred Job Locations" />}
+              onChange={handleMultiChange}
+              input={
+                <OutlinedInput
+                  id="select-multiple-chip"
+                  label="Preferred Job Types"
+                />
+              }
               renderValue={(selected) => (
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                  {Locations.map((value: any) => (
-                    <Chip key={value.name} label={value.name} />
+                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                  {selected.map((value) => (
+                    <Chip key={value} label={value} />
                   ))}
                 </Box>
               )}
               MenuProps={MenuProps}
             >
-              {Locations.map((jobType) => (
+              {jobTypeOptions.map((jobType) => (
                 <MenuItem
                   key={jobType.name}
                   value={jobType.name}
-                  style={getStyles(jobType.name, PrefferedLocations, theme)}
+                  style={getStyles(jobType.name, PrefferedType, theme)}
                 >
                   {jobType.name}
                 </MenuItem>
@@ -370,31 +410,20 @@ export default function UserFormStepper() {
             </Select>
           </Box>
         </Box>
-        <Box sx={{ display: "flex" }} className="mt-4">
-          <Box sx={{ width: "50%" }} className="mx-1">
-            <Typography>Email Address</Typography>
-            <TextField
-              id="email"
-              style={{ width: "100%" }}
-              placeholder="Enter Your Email Address"
-            />
-          </Box>
-          <Box sx={{ width: "50%" }} className="mx-1">
-            <Typography>Contact No</Typography>
-            <TextField
-              id="phone"
-              style={{ width: "100%" }}
-              placeholder="Enter Your Contact No"
-            />
-          </Box>
-        </Box>
       </>
     );
   };
-  
 
   return (
-    <Box height="35rem" sx={{ width: "100%", border: "1px solid #1976d2", borderRadius: "20px", padding: "20px" }}>
+    <Box
+      height="35rem"
+      sx={{
+        width: "100%",
+        border: "1px solid #1976d2",
+        borderRadius: "20px",
+        padding: "20px",
+      }}
+    >
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps: { completed?: boolean } = {};
@@ -409,20 +438,44 @@ export default function UserFormStepper() {
         })}
       </Stepper>
       {activeStep === steps.length ? (
-        <Box height="30rem" sx={{display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-          <Box height="80%" sx={{ display: "flex", justifyContent: "center", alignItems: "center",}}>
-          <Typography variant="h5" sx={{color:"#1976d2"}}>
-            All data has been submitted.
-          </Typography>
+        <Box
+          height="30rem"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <Box
+            height="80%"
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="h5" sx={{ color: "#1976d2" }}>
+              All data has been submitted.
+            </Typography>
           </Box>
-          <Box height="20%" sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+          <Box
+            height="20%"
+            sx={{ display: "flex", flexDirection: "row", pt: 2 }}
+          >
             <Box sx={{ flex: "1 1 auto" }} />
             <Button onClick={handleReset}>Reset</Button>
           </Box>
         </Box>
       ) : (
-        <Box height="90%" sx={{display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-          <Typography sx={{ mt: 2, mb: 1 }}>
+        <Box
+          height="90%"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <Box sx={{ mt: 2, mb: 1 }}>
             {activeStep === 0 ? (
               <PersonalDetails />
             ) : activeStep === 1 ? (
@@ -430,7 +483,7 @@ export default function UserFormStepper() {
             ) : activeStep === 2 ? (
               <JobPrefferences />
             ) : null}
-          </Typography>
+          </Box>
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
             <Button
               color="inherit"

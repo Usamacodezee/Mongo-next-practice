@@ -475,6 +475,10 @@ a {
   /* border: 2px solid rgb(255, 255, 255); */
 }
 
+.MuiSnackbarContent-root {
+  background-color: rgb(40, 40, 40);
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
