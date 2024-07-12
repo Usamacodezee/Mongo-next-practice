@@ -36,10 +36,7 @@ const Media = ({ loading = true }: MediaProps) => {
     const getProductInfo = async () => {
       try {
         const res = await axios.get("/api/products");
-        console.log(res);
-        console.log(res.data.data);
         setProducts(res.data.data);
-        // console.log("product", Products);
       } catch (error) {
         console.error("Failed to fetch product information", error);
         setError("Failed to fetch product information");
@@ -97,7 +94,7 @@ export default function ProductDataTable() {
   React.useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 1500);
 
     return () => clearTimeout(timer);
   }, []);
