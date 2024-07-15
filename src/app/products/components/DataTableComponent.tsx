@@ -79,7 +79,7 @@ const DataTableComponent: React.FC<DataTableComponentProps> = ({
   );
   const [LoggedUserId, setLoggedUserId] = useState("");
   const UserIdOfCartOwner = LoggedUserId;
-  console.log("user id", UserIdOfCartOwner);
+  // console.log("user id", UserIdOfCartOwner);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
   const [overlayProduct, setOverlayProduct] = useState<any>(null);
 
@@ -144,7 +144,7 @@ const DataTableComponent: React.FC<DataTableComponentProps> = ({
       },
       image: rowData.image,
     };
-    console.log("product to be added to cart", newCartItem);
+    // console.log("product to be added to cart", newCartItem);
     dispatch(addCartItem({ newCartItem, UserData: UserIdOfCartOwner }))
       .unwrap()
       .then(() => {

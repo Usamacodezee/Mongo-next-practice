@@ -113,7 +113,7 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
         .unwrap()
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .then((updatedProduct: any) => {
-          console.log("Review added successfully:", updatedProduct);
+          // console.log("Review added successfully:", updatedProduct);
           setReviewModalOff();
           setNewReview({
             reviewerName: "",

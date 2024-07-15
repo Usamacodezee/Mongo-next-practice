@@ -42,7 +42,7 @@ export const addReviewAsync = createAsyncThunk<
       throw new Error(`Failed to add review: ${errorDetails}`);
     }
     const updatedReview = await response.json();
-    console.log("updated review", updatedReview);
+    // console.log("updated review", updatedReview);
     return updatedReview as ProductTypes;
   } catch (error) {
     console.error("Error while adding review:", error);
