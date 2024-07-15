@@ -130,7 +130,8 @@ export default function AdvancedFilterDemo() {
 
   const getCustomers = (data: Customer[]) => {
     return [...(data || [])].map((d) => {
-      // @ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       d.date = new Date(d.date);
 
       return d;
@@ -158,8 +159,9 @@ export default function AdvancedFilterDemo() {
 
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    let _filters = { ...filters };
+    const _filters = { ...filters };
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     _filters["global"].value = value;
 

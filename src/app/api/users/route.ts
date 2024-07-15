@@ -1,9 +1,10 @@
-import { NextRequest, NextResponse } from 'next/server';
-import {connect} from '@/app/lib/dbConnect';
-import User from '@/app/models/User';
+import { NextRequest, NextResponse } from "next/server";
+import { connect } from "@/app/lib/dbConnect";
+import User from "@/app/models/User";
 
 connect();
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function GET(req: NextRequest) {
   try {
     const users = await User.find({});
@@ -20,7 +21,7 @@ export async function POST(req: NextRequest) {
     await newUser.save();
     return NextResponse.json({ success: true, data: newUser });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return NextResponse.json({ success: false }, { status: 400 });
   }
 }

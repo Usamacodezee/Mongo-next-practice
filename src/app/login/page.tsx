@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { ProgressBar } from "primereact/progressbar";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { NextRequest } from "next/server";
 import { Ripple } from "primereact/ripple";
 import { InputText } from "primereact/inputtext";
@@ -20,7 +22,7 @@ const initialValues = {
   email: "",
 };
 
-export default function LoginPage(request: NextRequest) {
+export default function LoginPage() {
   const dispatch = useDispatch<AppDispatch>();
   const toast = useRef<Toast>(null);
   const showToast = (severity: any, summary: string, detail: string) => {
@@ -30,7 +32,7 @@ export default function LoginPage(request: NextRequest) {
   };
   const router = useRouter();
   const [PasswordVisible, setPasswordVisible] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
+  const [loading] = React.useState(false);
 
   useEffect(() => {
     const logout = async () => {

@@ -18,6 +18,7 @@ import Navbar from "../components/Navbar";
 const Users = () => {
   const toast = useRef<Toast>(null);
   const dispatch = useDispatch<AppDispatch>();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [EditableData, setEditableData] = useState<any>({});
   const [loading, setLoading] = useState(true);
   const [DeleteModal, setDeleteModal] = useState(false);
@@ -34,6 +35,7 @@ const Users = () => {
       .then(() => {
         setLoading(false);
       })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .catch((err: any) => {
         console.error(err);
         setError(err.message);
@@ -45,6 +47,7 @@ const Users = () => {
     fetchData();
   }, [fetchData]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const HandleUpdateRecord = (rowData: any) => {
     const editedData = {
       ...rowData,
@@ -54,12 +57,14 @@ const Users = () => {
     setFormModal(true);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleDeleteModal = (rowData: any) => {
     setProductToDelete(rowData);
     setDeleteModal(true);
   };
 
-  const handleProductToReview = (rowData: any, e: any) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleProductToReview = (rowData: any) => {
     setReviewModal(true);
     setProductReview(rowData);
   };

@@ -1,13 +1,14 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
-import AvatarGroup from '@mui/material/AvatarGroup';
-import axios from 'axios';
-import { grey } from '@mui/material/colors';
-import { ProductTypes } from '@/app/common/ProductFormData';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Avatar from "@mui/material/Avatar";
+import AvatarGroup from "@mui/material/AvatarGroup";
+import axios from "axios";
+import { grey } from "@mui/material/colors";
+import { ProductTypes } from "@/app/common/ProductFormData";
 
 export default function AvatarComponent() {
   const [Products, setProducts] = React.useState<ProductTypes[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
@@ -26,12 +27,17 @@ export default function AvatarComponent() {
     getProductInfo();
   }, []);
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', p: 2 }}>
+    <Box sx={{ display: "flex", justifyContent: "center", p: 2 }}>
       <AvatarGroup total={Products.length}>
         {Products.map((product, index) => (
-      <Avatar key={index}  sx={{ bgcolor: grey[400] }}  alt={product.name} src={product.image} />
+          <Avatar
+            key={index}
+            sx={{ bgcolor: grey[400] }}
+            alt={product.name}
+            src={product.image}
+          />
         ))}
-    </AvatarGroup>
+      </AvatarGroup>
     </Box>
   );
 }

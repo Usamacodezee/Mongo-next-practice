@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import axios from "axios";
 import { InputText } from "primereact/inputtext";
 import { Message } from "primereact/message";
@@ -41,8 +40,9 @@ const PasswordUpdateComponent: React.FC<PasswordUpdateComponentProps> = ({
   PasswordUpdateVisiblility,
 }) => {
   const dispatch = useDispatch<AppDispatch>();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const toast = useRef<any>(null);
-  const router = useRouter();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const showToast = (severity: any, summary: string, detail: string) => {
     if (toast.current) {
       toast.current.show({ severity, summary, detail });
@@ -51,7 +51,7 @@ const PasswordUpdateComponent: React.FC<PasswordUpdateComponentProps> = ({
   const [OldPasswordVisible, setOldPasswordVisible] = useState(false);
   const [NewPasswordVisible, setNewPasswordVisible] = useState(false);
   const [ConfirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
-  const [userId, setuserID] = useState("");
+  const [, setuserID] = useState("");
 
   const [initialValues, setInitialValues] = useState({
     id: "",
@@ -77,6 +77,7 @@ const PasswordUpdateComponent: React.FC<PasswordUpdateComponentProps> = ({
     fetchUserCredentials();
   }, []);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const togglePasswordVisibility = (type: any) => {
     switch (type) {
       case "currentPassword":

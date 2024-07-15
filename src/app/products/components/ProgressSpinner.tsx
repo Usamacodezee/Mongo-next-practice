@@ -1,4 +1,5 @@
 import { ProgressSpinner } from "primereact/progressspinner";
+import React from "react";
 
 export default function ProgSpinner() {
   return (
@@ -6,7 +7,7 @@ export default function ProgSpinner() {
       className="mt-5"
       style={{
         height: "75vh",
-        width:"84vw",
+        width: "84vw",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

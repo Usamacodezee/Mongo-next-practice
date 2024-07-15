@@ -1,3 +1,5 @@
+/* eslint-disable no-unsafe-optional-chaining */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import AddForm, { UserTypes } from "@/app/common/UserFormData";
 import moment from "moment";
 import { Calendar } from "primereact/calendar";
@@ -9,12 +11,12 @@ import { RadioButton } from "primereact/radiobutton";
 import { Message } from "primereact/message";
 import { Formik, Form, Field } from "formik";
 import { addUserAsync, updateUserAsync } from "@/redux/users/userSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "@/redux/store";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
 import validationSchema from "@/app/common/ValidationSchema";
 import { Button } from "primereact/button";
 import ResetButton from "./ResetButton";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { Toast } from "primereact/toast";
 
 const initialValues: UserTypes = {
@@ -91,7 +93,7 @@ const UserForm: React.FC<UserFormProps> = ({
                   onChange={(e) => {
                     const isChecked = e.checked;
                     const value = e.value;
-                    let newValue = isChecked ? value : "";
+                    const newValue = isChecked ? value : "";
 
                     props.onChange({
                       target: { name: props?.name, value: newValue },
@@ -127,7 +129,7 @@ const UserForm: React.FC<UserFormProps> = ({
                         value={category?.name}
                         checked={field?.value.includes(category?.name)}
                         onChange={(e) => {
-                          let _values = [...field?.value];
+                          const _values = [...field?.value];
                           if (e.checked) {
                             _values.push(e.value);
                           } else {
@@ -300,7 +302,7 @@ const UserForm: React.FC<UserFormProps> = ({
                   const Component =
                     fieldComponents[field?.fieldType] || InputText;
                   return (
-                    <div className={field?.inputSize}>
+                    <div key={index} className={field?.inputSize}>
                       <label className="fw-bold mb-1" htmlFor={field?.name}>
                         {field?.label ? field?.label : field?.name}
                         <span className="text-danger">*</span>

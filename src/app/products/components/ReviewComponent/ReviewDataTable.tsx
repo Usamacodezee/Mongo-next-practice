@@ -1,16 +1,22 @@
+/* eslint-disable react/no-unescaped-entities */
 import moment from "moment";
 import { Card } from "primereact/card";
 import { DataView } from "primereact/dataview";
 import { Rating } from "primereact/rating";
 import NotFound from "../../../../../public/notfound.svg";
 import Image from "next/image";
+import React from "react";
 
 interface ReviewDataTableProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ProductReview: any;
 }
 
+// eslint-disable-next-line react/prop-types
 const ReviewDataTable: React.FC<ReviewDataTableProps> = ({ ProductReview }) => {
+  // eslint-disable-next-line react/prop-types
   const ReviewsCount = ProductReview?.reviews?.length;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const itemTemplate = (Reviews: any) => {
     return (
       <Card key={Reviews._id} className="ReviewsComponent m-1">

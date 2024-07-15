@@ -1,9 +1,15 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 "use client";
 import React, { useState, useEffect } from "react";
 import { classNames } from "primereact/utils";
 import { FilterMatchMode, FilterOperator } from "primereact/api";
 import { DataTable, DataTableFilterMeta } from "primereact/datatable";
-import { Column, ColumnFilterElementTemplateOptions } from "primereact/column";
+import {
+  Column,
+  ColumnFilterApplyTemplateOptions,
+  ColumnFilterClearTemplateOptions,
+  ColumnFilterElementTemplateOptions,
+} from "primereact/column";
 import { InputText } from "primereact/inputtext";
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
@@ -126,7 +132,7 @@ export default function AdvancedFilterDemo() {
 
   const getCustomers = (data: Customer[]) => {
     return [...(data || [])].map((d) => {
-      // @ts-ignore
+      // @ts-expect-error
       d.date = new Date(d.date);
 
       return d;
@@ -154,7 +160,7 @@ export default function AdvancedFilterDemo() {
 
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    let _filters = { ...filters };
+    const _filters = { ...filters };
 
     // @ts-ignore
     _filters["global"].value = value;
@@ -404,7 +410,7 @@ export default function AdvancedFilterDemo() {
   const header = renderHeader();
 
   return (
-    <div style={{ display: "flex", height:"100vh", width:"100vw" }}>
+    <div style={{ display: "flex", height: "100vh", width: "100vw" }}>
       <div style={{ width: "15v" }}>
         <SideBar />
       </div>

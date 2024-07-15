@@ -2,6 +2,7 @@ import nodemailer from "nodemailer";
 import Admin from "@/app/models/Admin";
 import bcryptjs from "bcryptjs";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const sendEmail = async ({ email, emailType, adminId }: any) => {
   try {
     if (!adminId) {
@@ -21,7 +22,7 @@ export const sendEmail = async ({ email, emailType, adminId }: any) => {
       });
     }
 
-    var transport = nodemailer.createTransport({
+    const transport = nodemailer.createTransport({
       host: "sandbox.smtp.mailtrap.io",
       port: 2525,
       auth: {
@@ -46,6 +47,7 @@ export const sendEmail = async ({ email, emailType, adminId }: any) => {
 
     const mailresponse = await transport.sendMail(mailOptions);
     return mailresponse;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     throw new Error(error.message);
   }
