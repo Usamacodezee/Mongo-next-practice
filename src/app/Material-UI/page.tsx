@@ -7,29 +7,59 @@ import DataTable from "./Components/DataTable";
 import AvatarComponent from "./Components/AvatarComponent";
 import SnackBarComponent from "./Components/SnackBarComponent";
 import React from "react";
+import { Box, Tab } from "@mui/material";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
 
 interface pageProps {}
 
 // eslint-disable-next-line no-empty-pattern
 const page: FC<pageProps> = ({}) => {
+  const [value, setValue] = React.useState("");
+
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
+
   return (
-    <div>
-      <div className="container py-4 pb-4">
+    <Box>
+      <Box className="container py-4 pb-4">
         <SideDrawer />
-        <DataTable />
-      </div>
-      <div
-        className="container pb-4"
-        style={{ display: "flex", justifyContent: "space-around" }}
+      </Box>
+      <Box
+        className="container py-4 pb-4"
+        sx={{ width: "100%", typography: "body1" }}
       >
-        <RadioButtonGroup />
-        <AvatarComponent />
-        <SnackBarComponent />
-      </div>
-      <div className="container py-4">
-        <UserFormStepper />
-      </div>
-    </div>
+        <TabContext value={value}>
+          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+            <TabList onChange={handleChange} aria-label="lab API tabs example">
+              <Tab label="Products" value="Products" />
+              <Tab label="Product Form" value="ProductForm" />
+              <Tab label="Extra" value="Extra" />
+            </TabList>
+          </Box>
+          <TabPanel value="Products">
+            <DataTable />
+          </TabPanel>
+          <TabPanel value="ProductForm">
+            <Box className="container py-4">
+              <UserFormStepper />
+            </Box>
+          </TabPanel>
+          <TabPanel value="Extra">
+            <Box
+              className="container pb-4"
+              sx={{ display: "flex", justifyContent: "space-around" }}
+            >
+              <RadioButtonGroup />
+              <AvatarComponent />
+              <SnackBarComponent />
+            </Box>
+          </TabPanel>
+        </TabContext>
+      </Box>
+    </Box>
   );
 };
 export default page;
