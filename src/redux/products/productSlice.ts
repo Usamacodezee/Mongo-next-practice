@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ProductTypes } from "@/app/common/ProductFormData";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
@@ -41,16 +42,13 @@ export const addReviewAsync = createAsyncThunk<
       throw new Error(`Failed to add review: ${errorDetails}`);
     }
     const updatedReview = await response.json();
-    console.log("updated review", updatedReview)
+    // console.log("updated review", updatedReview);
     return updatedReview as ProductTypes;
   } catch (error) {
     console.error("Error while adding review:", error);
     throw error;
   }
 });
-
-
-
 
 export const addProductAsync = createAsyncThunk<ProductTypes, ProductTypes>(
   "products/addProductAsync",

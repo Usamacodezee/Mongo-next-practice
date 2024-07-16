@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import * as React from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -13,10 +14,10 @@ interface MediaProps {
 }
 
 const Media = ({ loading = true }: MediaProps) => {
-  const [Products, setProducts] = React.useState<any>({});
-  const [error, setError] = React.useState<string | null>(null);
+  const [products, setProducts] = useState<any>({});
+  const [error, setError] = useState<string | null>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const getProductInfo = async () => {
       try {
         const res = await axios.get("/api/products");
@@ -29,6 +30,8 @@ const Media = ({ loading = true }: MediaProps) => {
     getProductInfo();
   }, []);
 
+  const memoizedProducts = useMemo(() => products, [products]);
+
   return (
     <>
       <Typography gutterBottom variant="h3">
@@ -40,13 +43,13 @@ const Media = ({ loading = true }: MediaProps) => {
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
         {loading
-          ? Array.from(new Array(5)).map((_, index) => (
+          ? Array.from(new Array(4)).map((_, index) => (
               <Grid item key={index} xs={12} sm={12} md={3} lg={3}>
                 <SkeletonBodyComponent />
               </Grid>
             ))
-          : Products.length > 0
-          ? Products.map((product: any) => (
+          : memoizedProducts.length > 0
+          ? memoizedProducts.map((product: any) => (
               <Grid
                 item
                 key={product._id}
@@ -73,9 +76,9 @@ const Media = ({ loading = true }: MediaProps) => {
 };
 
 export default function ProductDataTable() {
-  const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1500);

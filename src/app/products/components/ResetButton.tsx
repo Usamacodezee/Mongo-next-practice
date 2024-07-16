@@ -3,6 +3,7 @@ import { useFormikContext } from "formik";
 import { Button } from "primereact/button";
 
 interface DeleteDialogProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   initialValues: any;
   onReset: () => void;
 }

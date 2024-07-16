@@ -8,7 +8,6 @@ import Typography from "@mui/material/Typography";
 import {
   Chip,
   FormControlLabel,
-  InputLabel,
   MenuItem,
   OutlinedInput,
   Radio,
@@ -65,7 +64,7 @@ export default function UserFormStepper() {
   const [PrefferedLocations, setPrefferedLocations] = React.useState<string[]>(
     []
   );
-  const [PrefferedType, setPrefferedType] = React.useState<string[]>([]);
+  const [PrefferedType] = React.useState<string[]>([]);
 
   const handleChange = (event: SelectChangeEvent) => {
     const { name, value } = event.target;
@@ -115,7 +114,7 @@ export default function UserFormStepper() {
   };
 
   const handleNext = () => {
-    let newSkipped = skipped;
+    const newSkipped = skipped;
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
   };
@@ -425,7 +424,7 @@ export default function UserFormStepper() {
       }}
     >
       <Stepper activeStep={activeStep}>
-        {steps.map((label, index) => {
+        {steps.map((label) => {
           const stepProps: { completed?: boolean } = {};
           const labelProps: {
             optional?: React.ReactNode;

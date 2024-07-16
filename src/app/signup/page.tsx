@@ -38,6 +38,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const initialValues = {
+  // eslint-disable-next-line no-constant-binary-expression
   _id: 0 || null,
   email: "",
   password: "",
@@ -47,20 +48,20 @@ const initialValues = {
 export default function SignupPage() {
   const dispatch = useDispatch<AppDispatch>();
   const toast = useRef<Toast>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const showToast = (severity: any, summary: string, detail: string) => {
     if (toast.current) {
       toast.current.show({ severity, summary, detail });
     }
   };
   const router = useRouter();
-  const [buttonDisabled, setButtonDisabled] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
 
   const formik = useFormik({
     initialValues,
     validationSchema: validationSchema,
     onSubmit: async (values, { resetForm }) => {
       try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const response: any = await dispatch(addAdminAsync(values)).unwrap();
 
         if (response && response.success) {
@@ -70,6 +71,7 @@ export default function SignupPage() {
         } else {
           throw new Error(response.error || "Login failed");
         }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         console.error("Error logging in:", error);
         showToast("error", "Error", error.message || "Something went wrong!");

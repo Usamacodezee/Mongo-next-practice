@@ -1,8 +1,9 @@
-import { GET } from "@/app/api/users/route";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserTypes } from "@/app/common/UserFormData";
 
-const HOST_NAME = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000";
+const HOST_NAME =
+  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3000";
 const initialState: UserTypes[] = [];
 
 export const fetchUsers = createAsyncThunk<UserTypes[], void>(
@@ -37,7 +38,7 @@ export const addUserAsync = createAsyncThunk<UserTypes, UserTypes>(
       throw new Error("Failed to add new user");
     }
     const data = await response.json();
-    console.log("added user", data);
+    // console.log("added user", data);
     return data;
   }
 );

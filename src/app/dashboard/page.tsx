@@ -1,4 +1,5 @@
 import SideBar from "@/app/components/Sidebar";
+import React from "react";
 
 export default function dashboard() {
   return (

@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { Button } from "primereact/button";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Cart from "../products/components/CartComponent";
 import { Tooltip } from "primereact/tooltip";
-import axios from "axios";
 import "@/app/globals.css";
 import { fetchCartItems } from "@/redux/cart/cartSlice";
 import { useDispatch } from "react-redux";
@@ -18,17 +18,10 @@ export default function Navbar() {
   const [visibleRight, setVisibleRight] = useState<boolean>(false);
   const [sidebarContent, setSidebarContent] = useState<string>("");
   const dispatch = useDispatch<AppDispatch>();
-  const op = useRef<any>(null);
   const menu = useRef<any>(null);
 
   useEffect(() => {
-    const GetUserCredentials = async () => {
-      try {
-        const res = await axios.get("/api/admin/me");
-      } catch (error) {
-        console.error("Failed to fetch cart length", error);
-      }
-    };
+    const GetUserCredentials = async () => {};
     GetUserCredentials();
   }, []);
 

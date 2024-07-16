@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { FC } from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import moment from "moment";
-import { Button, Chip, Divider, Rating } from "@mui/material";
+import { Button, Chip, Rating } from "@mui/material";
 import "@/app/CSS/custom.css";
 import LaptopWindowsIcon from "@mui/icons-material/LaptopWindows";
 import DiamondIcon from "@mui/icons-material/Diamond";
@@ -18,15 +19,16 @@ import RotateLeftOutlinedIcon from "@mui/icons-material/RotateLeftOutlined";
 import CurrencyRupeeOutlinedIcon from "@mui/icons-material/CurrencyRupeeOutlined";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import React from "react";
 
 interface ProductLayoutProps {
   product: any;
 }
 
 const ProductLayout: FC<ProductLayoutProps> = ({ product }) => {
-  console.log("product", product);
-  console.log("product reviews", product?.reviews?.length);
-  console.log("product rating", product?.rating);
+  // console.log("product", product);
+  // console.log("product reviews", product?.reviews?.length);
+  // console.log("product rating", product?.rating);
 
   const averageRating = product?.reviews?.length
     ? product.reviews.reduce(
@@ -34,7 +36,7 @@ const ProductLayout: FC<ProductLayoutProps> = ({ product }) => {
         0
       ) / product.reviews.length
     : 0;
-  console.log("average rating", averageRating);
+  // console.log("average rating", averageRating);
 
   return (
     <>

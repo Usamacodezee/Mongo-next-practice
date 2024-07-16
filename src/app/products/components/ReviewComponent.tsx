@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import moment from "moment";
 import { Rating } from "primereact/rating";
 import { InputText } from "primereact/inputtext";
@@ -11,13 +12,16 @@ import axios from "axios";
 import { InputTextarea } from "primereact/inputtextarea";
 import ReviewDataTable from "./ReviewComponent/ReviewDataTable";
 import { z } from "zod"; // Import Zod
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Message } from "primereact/message";
 import { Alert } from "@mui/material";
 
 interface ReviewComponentProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ProductReview: any;
   setReviewModalOff: () => void;
   setReviewModalOn: () => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setProductReview: (product: any) => void;
   fetchData: () => void;
 }
@@ -60,13 +64,16 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     setNewReview((prevReview: any) => ({
       ...prevReview,
       [name]: value,
     }));
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleRatingChange = (e: any) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     setNewReview((prevReview: any) => ({
       ...prevReview,
       rating: e.value,
@@ -104,8 +111,9 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
     if (productId) {
       dispatch(addReviewAsync({ productId, review }))
         .unwrap()
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .then((updatedProduct: any) => {
-          console.log("Review added successfully:", updatedProduct);
+          // console.log("Review added successfully:", updatedProduct);
           setReviewModalOff();
           setNewReview({
             reviewerName: "",
@@ -175,7 +183,9 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
               />
               {errors.reviewerName && (
                 <>
-                <Alert className="p-0" severity="error">{errors.reviewerName}</Alert>
+                  <Alert className="p-0" severity="error">
+                    {errors.reviewerName}
+                  </Alert>
                 </>
               )}
 
@@ -190,7 +200,9 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
                 style={{ pointerEvents: "none", opacity: "0.5" }}
               />
               {errors.reviewerEmail && (
-                <Alert className="p-0" severity="error">{errors.reviewerEmail}</Alert>
+                <Alert className="p-0" severity="error">
+                  {errors.reviewerEmail}
+                </Alert>
               )}
 
               <strong>Description:</strong>
@@ -204,7 +216,9 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
               />
               {errors.comment && (
                 <>
-                <Alert className="p-0" severity="error">{errors.comment}</Alert>
+                  <Alert className="p-0" severity="error">
+                    {errors.comment}
+                  </Alert>
                 </>
               )}
               <div
@@ -224,7 +238,9 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
                 />
               </div>
               {errors.rating && (
-                <Alert className="p-0" severity="error">{errors.rating}</Alert>
+                <Alert className="p-0" severity="error">
+                  {errors.rating}
+                </Alert>
               )}
               <Button
                 label="Add Review"

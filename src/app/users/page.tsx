@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import { fetchUsers } from "@/redux/users/userSlice";
@@ -5,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
-import ProgSpinner from "./components/ProgressSpinner";
 import "@/app/CSS/custom.css";
 import { Dialog } from "primereact/dialog";
 import DeleteDialog from "./components/DeleteDialog";

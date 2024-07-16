@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import axios from "axios";
@@ -63,7 +64,7 @@ export default function VerifyEmailPage() {
               padding: "10px",
               borderRadius: "8px",
               backgroundColor: "white",
-              color: "black"
+              color: "black",
             }}
             onClick={verifyUserEmail}
           />

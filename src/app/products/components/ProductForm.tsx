@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import ProductForm, { ProductTypes } from "@/app/common/ProductFormData";
 import moment from "moment";
 import { Calendar } from "primereact/calendar";
@@ -17,7 +18,7 @@ import { AppDispatch } from "@/redux/store";
 import ProductvalidationSchema from "@/app/common/ProductValidationSchema";
 import { Button } from "primereact/button";
 import ResetButton from "./ResetButton";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { Toast } from "primereact/toast";
 import { InputTextarea } from "primereact/inputtextarea";
 import "@/app/globals.css";
@@ -50,6 +51,7 @@ const initialValues: ProductTypes = {
 
 interface ProductFormProps {
   EditableData: ProductTypes;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   isEditMode: any;
   fetchData: () => void;
   onClose: () => void;
@@ -59,6 +61,7 @@ interface ProductFormProps {
   setIsEditModeOff: () => void;
   HandleClose: () => void;
   setLoadingon: () => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setEditableData: (data: any) => void;
 }
 
@@ -84,11 +87,15 @@ const ProductFormComponnent: React.FC<ProductFormProps> = ({
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const fieldComponents: any = {
+    // eslint-disable-next-line react/react-in-jsx-scope, @typescript-eslint/no-explicit-any
     InputText: (props: any) => <InputText {...props} />,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     InputTextarea: (props: any) => (
       <InputTextarea style={{ height: "10rem" }} {...props} />
     ),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     Checkbox: (props: any) => {
       const value =
         ProductForm.find((item) => item?.name === props?.name)?.value || [];
@@ -105,7 +112,7 @@ const ProductFormComponnent: React.FC<ProductFormProps> = ({
                   onChange={(e) => {
                     const isChecked = e.checked;
                     const value = e.value;
-                    let newValue = isChecked ? value : "";
+                    const newValue = isChecked ? value : "";
 
                     props.onChange({
                       target: { name: props?.name, value: newValue },
@@ -121,6 +128,7 @@ const ProductFormComponnent: React.FC<ProductFormProps> = ({
         </div>
       );
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     GroupCheckbox: (props: any) => {
       return (
         <Field name={props?.name}>
@@ -142,7 +150,8 @@ const ProductFormComponnent: React.FC<ProductFormProps> = ({
                         value={category?.name}
                         checked={field?.value.includes(category?.name)}
                         onChange={(e) => {
-                          let _values = [...field?.value];
+                          // eslint-disable-next-line no-unsafe-optional-chaining
+                          const _values = [...field?.value];
                           if (e.checked) {
                             _values.push(e.value);
                           } else {
@@ -186,7 +195,8 @@ const ProductFormComponnent: React.FC<ProductFormProps> = ({
                     let newValue;
                     if (isChecked) {
                       newValue = Array.isArray(props?.value)
-                        ? [...props?.value, value]
+                        ? // eslint-disable-next-line no-unsafe-optional-chaining
+                          [...props?.value, value]
                         : value;
                     } else {
                       newValue = Array.isArray(props?.value)
@@ -276,7 +286,7 @@ const ProductFormComponnent: React.FC<ProductFormProps> = ({
             enableReinitialize={true}
             validationSchema={ProductvalidationSchema}
             onSubmit={async (values, { resetForm }) => {
-              console.log("product data", values);
+              // console.log("product data", values);
               try {
                 if (isEditMode) {
                   await dispatch(
@@ -309,10 +319,11 @@ const ProductFormComponnent: React.FC<ProductFormProps> = ({
           >
             {({ errors, touched }) => (
               <Form className="row g-3 px-3">
-                {ProductForm.map((field: any, index: number) => {
+                {ProductForm.map((field: any) => {
                   const Component =
                     fieldComponents[field?.fieldType] || InputText;
                   return (
+                    // eslint-disable-next-line react/jsx-key
                     <div className={field?.inputSize}>
                       <label className="fw-bold mb-1" htmlFor={field?.name}>
                         {field?.label ? field?.label : field?.name}

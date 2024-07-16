@@ -3,9 +3,9 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
-import { colors, IconButton } from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
-import "@/app/globals.css"
+import { IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import "@/app/globals.css";
 
 interface State extends SnackbarOrigin {
   open: boolean;
@@ -29,13 +29,13 @@ export default function SnackBarComponent() {
 
   const action = (
     <React.Fragment>
-      <Button sx={{color: "#00bfff"}} size="medium" onClick={handleClose}>
+      <Button sx={{ color: "#00bfff" }} size="medium" onClick={handleClose}>
         UNDO
       </Button>
       <IconButton
         size="medium"
         aria-label="close"
-        sx={{color: "#00bfff"}}
+        sx={{ color: "#00bfff" }}
         onClick={handleClose}
       >
         <CloseIcon fontSize="small" />
@@ -88,7 +88,7 @@ export default function SnackBarComponent() {
     <Box sx={{ width: 500 }}>
       {buttons}
       <Snackbar
-      color="green"
+        color="green"
         anchorOrigin={{ vertical, horizontal }}
         autoHideDuration={3000}
         open={open}

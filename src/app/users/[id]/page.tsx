@@ -1,9 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import NotFound from "../../../../public/notfound.svg";
-import BackArrow from "../../../../public/Backarrow.svg";
-import Image from "next/image";
 import { ProgressSpinner } from "primereact/progressspinner";
 import Link from "next/link";
 import { Button } from "primereact/button";
@@ -21,6 +18,7 @@ const UserDetailsPage: React.FC = () => {
   const userId = searchParams.get("id");
   const dispatch = useDispatch<AppDispatch>();
   const toast = useRef(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
@@ -49,9 +47,11 @@ const UserDetailsPage: React.FC = () => {
     fetchUser();
   }, [userId]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const accept = (user: any) => {
     handleDelete(user);
     if (toast.current !== null) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (toast.current as any).show({
         severity: "info",
         summary: "Confirmed",
@@ -63,6 +63,7 @@ const UserDetailsPage: React.FC = () => {
 
   const reject = () => {};
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const DeleteConfirmationPopup = (event: any) => {
     confirmPopup({
       target: event.currentTarget,
@@ -74,6 +75,7 @@ const UserDetailsPage: React.FC = () => {
     });
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleDelete = (user: any) => {
     dispatch(deleteUser(user.data._id))
       .unwrap()
@@ -277,6 +279,7 @@ const UserDetailsPage: React.FC = () => {
                           />
                           <div>
                             {user?.data?.PrefferedLocations?.map(
+                              // eslint-disable-next-line @typescript-eslint/no-explicit-any
                               (location: any, index: number) => (
                                 <span className="fw-light" key={index}>
                                   {" "}
@@ -296,6 +299,7 @@ const UserDetailsPage: React.FC = () => {
                           />
                           <div>
                             {user?.data?.PrefferedType?.map(
+                              // eslint-disable-next-line @typescript-eslint/no-explicit-any
                               (type: any, index: number) => (
                                 <span className="fw-light" key={index}>
                                   {" "}
@@ -431,6 +435,7 @@ const UserDetailsPage: React.FC = () => {
                   rounded
                   className="mx-1 py-2 px-5"
                   style={{ borderRadius: "5px", backgroundColor: "#921818" }}
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   onClick={(event: any) => DeleteConfirmationPopup(event)}
                 >
                   <i

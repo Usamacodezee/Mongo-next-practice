@@ -141,7 +141,7 @@ export default function SideDrawer() {
         </DrawerHeader>
         <Divider />
         <List>
-          {LinkList.map((text, index) => (
+          {LinkList.map((text) => (
             <Link
               key={text}
               href={`/${text}`}

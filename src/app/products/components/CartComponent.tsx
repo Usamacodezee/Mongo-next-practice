@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { deleteCartItem, fetchCartItems } from "@/redux/cart/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
-import { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { DataView } from "primereact/dataview";
 import { Rating } from "primereact/rating";
 import { Button } from "primereact/button";
@@ -46,7 +47,7 @@ const Cart = () => {
     );
   }, [cart]);
 
-  const itemTemplate = (Cart: any, index: any) => {
+  const itemTemplate = (Cart: any) => {
     return (
       <div className="my-2" style={{ display: "flex", width: "28vw" }}>
         <div>

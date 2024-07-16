@@ -1,11 +1,12 @@
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { deleteProduct } from "@/redux/products/productSlice";
 
 interface DeleteDialogProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ProductToDelete: any;
   onClose: () => void;
   setLoading: () => void;
@@ -13,20 +14,27 @@ interface DeleteDialogProps {
 }
 
 const DeleteDialog: React.FC<DeleteDialogProps> = ({
+  // eslint-disable-next-line react/prop-types
   ProductToDelete,
+  // eslint-disable-next-line react/prop-types
   onClose,
+  // eslint-disable-next-line react/prop-types
   setLoading,
+  // eslint-disable-next-line react/prop-types
   FetchUpdatedData,
 }) => {
   const toast = useRef<Toast>(null);
   const dispatch = useDispatch<AppDispatch>();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const showToast = (severity: any, summary: string, detail: string) => {
     if (toast.current) {
       toast.current.show({ severity, summary, detail });
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleDelete = (ProductToDelete: any) => {
+    // eslint-disable-next-line react/prop-types
     dispatch(deleteProduct(ProductToDelete._id))
       .unwrap()
       .then(() => {

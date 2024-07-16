@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import axios from "axios";
 import { InputText } from "primereact/inputtext";
 import { Message } from "primereact/message";
@@ -46,13 +45,14 @@ const ProfileUpdateComponent: React.FC<ProfileUpdateComponentProps> = ({
 }) => {
   const dispatch = useDispatch<AppDispatch>();
   const toast = useRef<Toast>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const showToast = (severity: any, summary: string, detail: string) => {
     if (toast.current) {
       toast.current.show({ severity, summary, detail });
     }
   };
-  const router = useRouter();
   const [updatableAdminData, setUpdatableData] = useState({
+    // eslint-disable-next-line no-constant-binary-expression
     _id: 0 || null || "",
     username: "",
     email: "",
@@ -76,7 +76,8 @@ const ProfileUpdateComponent: React.FC<ProfileUpdateComponentProps> = ({
     initialValues: updatableAdminData,
     enableReinitialize: true,
     validationSchema,
-    onSubmit: async (values, { resetForm }) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    onSubmit: async (values: any, { resetForm }) => {
       try {
         await dispatch(updateAdminAsync(values));
         resetForm();

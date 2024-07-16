@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextRequest, NextResponse } from "next/server";
 import { connect } from "@/app/lib/dbConnect";
 import Product from "@/app/models/Product";
@@ -63,11 +64,14 @@ function calculateAverageRating(reviews: any[]): number {
   return totalRating / reviews.length;
 }
 
-export async function POST(req: NextRequest, { params }: { params: { id: string } }) {
+export async function POST(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   try {
     const data = await req.json();
     const { reviewerName, reviewerEmail, comment, rating, date } = data;
-    
+
     const newReview = {
       reviewerName,
       reviewerEmail,
@@ -75,7 +79,7 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
       rating,
       date: new Date(date),
     };
-  
+
     const product = await Product.findByIdAndUpdate(
       params.id,
       { $push: { reviews: newReview } },
@@ -97,4 +101,3 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
     return NextResponse.json({ success: false }, { status: 400 });
   }
 }
-

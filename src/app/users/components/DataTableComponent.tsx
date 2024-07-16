@@ -1,13 +1,11 @@
-import Image from "next/image";
 import {
   DataTable,
   DataTableFilterMeta,
   DataTableFilterMetaData,
 } from "primereact/datatable";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { FilterMatchMode } from "primereact/api";
-import { RootState, AppDispatch } from "@/redux/store";
-import NotFound from "../../../../public/notfound.svg";
+import { RootState } from "@/redux/store";
 import React, { useRef, useState } from "react";
 import AddForm, {
   DesignationOptions,
@@ -35,7 +33,9 @@ interface DataTableComponentProps {
   fetchData: () => void;
   setLoadingOff: () => void;
   setLoadingOn: () => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   HandleUpdateRecord: (rowData: any) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   handleDeleteModal: (rowData: any) => void;
 }
 
@@ -71,19 +71,8 @@ const DataTableComponent: React.FC<DataTableComponentProps> = ({
   handleDeleteModal,
 }) => {
   const dt = useRef<DataTable<UserTypes[]>>(null);
-  const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((state: RootState) => state.users);
   const toast = useRef<Toast>(null);
-
-  const showToast = (
-    severity: "success" | "info" | "warn" | "error" | undefined,
-    summary: string,
-    detail: string
-  ) => {
-    if (toast.current) {
-      toast.current.show({ severity, summary, detail });
-    }
-  };
 
   const [filters, setFilters] = useState<FilterType>(
     defaultFilters as FilterType
@@ -94,7 +83,7 @@ const DataTableComponent: React.FC<DataTableComponentProps> = ({
 
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    let _filters = { ...filters };
+    const _filters = { ...filters };
     (_filters["global"] as DataTableFilterMetaData).value = value;
     setFilters(_filters);
     setGlobalFilterValue(value);
@@ -151,6 +140,7 @@ const DataTableComponent: React.FC<DataTableComponentProps> = ({
     );
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const ActionBodyTemplate = (rowData: any) => {
     return (
       <React.Fragment>
@@ -348,6 +338,7 @@ const DataTableComponent: React.FC<DataTableComponentProps> = ({
           ]}
           header={renderHeader}
         >
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           {AddForm?.map((fields: any, index: number) => (
             <Column
               className="py-2"
@@ -386,6 +377,7 @@ const DataTableComponent: React.FC<DataTableComponentProps> = ({
                 fontWeight: "600",
                 minWidth: "15rem",
               }}
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               body={(rowData: any) => {
                 if (loading) {
                   return <Skeleton width="100%" height="2rem" />;
