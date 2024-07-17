@@ -13,10 +13,7 @@ export default function DataTable() {
     const getProductInfo = async () => {
       try {
         const res = await axios.get("/api/products");
-        // console.log(res);
-        // console.log(res.data.data);
         setProducts(res.data.data);
-        // console.log("product", Products);
       } catch (error) {
         console.error("Failed to fetch product information", error);
         setError("Failed to fetch product information");

@@ -11,6 +11,7 @@ import { Box, Tab } from "@mui/material";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
+import ContactUs from "./Components/ContactUs";
 
 interface pageProps {}
 
@@ -37,6 +38,7 @@ const page: FC<pageProps> = ({}) => {
               <Tab label="Products" value="Products" />
               <Tab label="Product Form" value="ProductForm" />
               <Tab label="Extra" value="Extra" />
+              <Tab label="Contact Us" value="ContactUs" />
             </TabList>
           </Box>
           <TabPanel value="Products">
@@ -55,6 +57,14 @@ const page: FC<pageProps> = ({}) => {
               <RadioButtonGroup />
               <AvatarComponent />
               <SnackBarComponent />
+            </Box>
+          </TabPanel>
+          <TabPanel value="ContactUs">
+            <Box
+              className="container pb-4"
+              sx={{ display: "flex", justifyContent: "space-around" }}
+            >
+              <ContactUs />
             </Box>
           </TabPanel>
         </TabContext>
