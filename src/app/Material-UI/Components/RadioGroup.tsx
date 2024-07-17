@@ -5,6 +5,12 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 
+const RadioButtons = [
+  { value: "female", label: "Female", control: <Radio /> },
+  { value: "male", label: "Male", control: <Radio /> },
+  { value: "other", label: "Other", control: <Radio /> },
+];
+
 export default function RadioButtonGroup() {
   return (
     <FormControl>
@@ -14,9 +20,14 @@ export default function RadioButtonGroup() {
         defaultValue="female"
         name="radio-buttons-group"
       >
-        <FormControlLabel value="female" control={<Radio />} label="Female" />
-        <FormControlLabel value="male" control={<Radio />} label="Male" />
-        <FormControlLabel value="other" control={<Radio />} label="Other" />
+        {RadioButtons.map((Radio, index) => (
+          <FormControlLabel
+            key={index}
+            value={Radio.value}
+            control={Radio.control}
+            label={Radio.label}
+          />
+        ))}
       </RadioGroup>
     </FormControl>
   );

@@ -104,7 +104,7 @@ export default function LoginPage() {
                 href="/login"
                 className=" PagesSwitchButtons nav-link mx-1"
                 aria-current="page"
-                style={{ color: "white" }}
+                style={{ color: "white", textDecoration: "none" }}
               >
                 <div
                   style={{
@@ -129,6 +129,7 @@ export default function LoginPage() {
                   style={{
                     backgroundColor: "rgb(13, 40, 67)",
                     borderRadius: "10px",
+                    textDecoration: "none",
                   }}
                   className="flex select-none py-2 px-3 justify-content-center align-items-center shadow-2 border-round p-6 font-bold p-ripple"
                 >
@@ -251,7 +252,7 @@ export default function LoginPage() {
                 <Link
                   href="/signup"
                   className="fw-bold mx-1"
-                  style={{ color: "#D94926" }}
+                  style={{ color: "#D94926", textDecoration: "none" }}
                 >
                   Registration page
                 </Link>
