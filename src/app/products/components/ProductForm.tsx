@@ -52,7 +52,7 @@ const initialValues: ProductTypes = {
 interface ProductFormProps {
   EditableData: ProductTypes;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  isEditMode: any;
+  isEditMode: boolean;
   fetchData: () => void;
   onClose: () => void;
   setLoading: (loading: boolean) => void;
@@ -62,7 +62,7 @@ interface ProductFormProps {
   HandleClose: () => void;
   setLoadingon: () => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  setEditableData: (data: any) => void;
+  setEditableData: (data: ProductTypes | null) => void;
 }
 
 const ProductFormComponnent: React.FC<ProductFormProps> = ({

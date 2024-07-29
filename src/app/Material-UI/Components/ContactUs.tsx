@@ -28,6 +28,13 @@ const ContactUsForm = [
     margin: "normal",
   },
   {
+    name: "phone",
+    type: "number",
+    label: "Contact No",
+    variant: "outlined",
+    margin: "normal",
+  },
+  {
     name: "message",
     type: "text",
     label: "Message",
@@ -40,8 +47,11 @@ const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: 0,
     message: "",
+    date: new Date(),
   });
+  console.log("form data", formData);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackBarMessage, setSnackBarMessage] = useState("");
   const [SnackMessageTypeSuccess, setSnackMessageTypeSuccess] = useState(true);
@@ -70,7 +80,13 @@ const ContactForm = () => {
       setSnackBarMessage("Thank You, We'll Contact You Soon");
       setOpenSnackbar(true);
       // Reset form fields
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({
+        name: "",
+        email: "",
+        phone: 0,
+        message: "",
+        date: new Date(),
+      });
     } catch (error) {
       setSnackMessageTypeSuccess;
       false;
@@ -110,7 +126,15 @@ const ContactForm = () => {
             fullWidth
             type={Field.type}
             name={Field.name}
-            value={formData.name}
+            value={
+              Field.name === "name"
+                ? formData.name
+                : Field.name === "email"
+                ? formData.email
+                : Field.name === "message"
+                ? formData.message
+                : formData.name
+            }
             onChange={handleChange}
             label={Field.label}
             variant={Field.variant}

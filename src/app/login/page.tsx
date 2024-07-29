@@ -77,7 +77,7 @@ export default function LoginPage() {
   return (
     <div
       style={{
-        backgroundColor: "#abcfed",
+        backgroundColor: "#dcdcdc",
       }}
     >
       <Toast ref={toast} className="my-1" />
