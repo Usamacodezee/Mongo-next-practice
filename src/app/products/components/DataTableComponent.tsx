@@ -9,6 +9,7 @@ import React, { useEffect, useRef, useState } from "react";
 import ProductFormData, {
   AvailabilityOptions,
   CategoryOptions,
+  ProductTypes,
 } from "@/app/common/ProductFormData";
 import { addCartItem } from "@/redux/cart/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,12 +37,12 @@ interface FilterType extends DataTableFilterMeta {}
 
 interface DataTableComponentProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  loading: any;
+  loading: true | false;
   fetchData: () => void;
   setLoadingOff: () => void;
   setLoadingOn: () => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  HandleUpdateRecord: (rowData: any) => void;
+  HandleUpdateRecord: (rowData: ProductTypes) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   handleDeleteModal: (rowData: any) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -12,12 +12,13 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import ContactUs from "./Components/ContactUs";
+import GalleryComponent from "./Components/Gallery";
 
 interface pageProps {}
 
 // eslint-disable-next-line no-empty-pattern
 const page: FC<pageProps> = ({}) => {
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState("Products");
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -35,10 +36,11 @@ const page: FC<pageProps> = ({}) => {
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <TabList onChange={handleChange} aria-label="lab API tabs example">
-              <Tab label="Products" value="Products" />
+              <Tab label="Products list" value="Products" />
               <Tab label="Product Form" value="ProductForm" />
               <Tab label="Extra" value="Extra" />
               <Tab label="Contact Us" value="ContactUs" />
+              <Tab label="Gallery" value="Gallery" />
             </TabList>
           </Box>
           <TabPanel value="Products">
@@ -65,6 +67,14 @@ const page: FC<pageProps> = ({}) => {
               sx={{ display: "flex", justifyContent: "space-around" }}
             >
               <ContactUs />
+            </Box>
+          </TabPanel>
+          <TabPanel value="Gallery">
+            <Box
+              className="Gallery pb-4"
+              sx={{ display: "flex", justifyContent: "space-around" }}
+            >
+              <GalleryComponent />
             </Box>
           </TabPanel>
         </TabContext>
