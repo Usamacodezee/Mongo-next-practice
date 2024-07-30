@@ -13,6 +13,7 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import ContactUs from "./Components/ContactUs";
 import GalleryComponent from "./Components/Gallery";
+import AutoComplete from "./Components/AutoComplete";
 
 interface pageProps {}
 
@@ -59,6 +60,7 @@ const page: FC<pageProps> = ({}) => {
               <RadioButtonGroup />
               <AvatarComponent />
               <SnackBarComponent />
+              <AutoComplete />
             </Box>
           </TabPanel>
           <TabPanel value="ContactUs">

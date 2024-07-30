@@ -17,7 +17,7 @@ export default function RadioButtonGroup() {
       <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
       <RadioGroup
         aria-labelledby="demo-radio-buttons-group-label"
-        defaultValue="female"
+        defaultValue="male"
         name="radio-buttons-group"
       >
         {RadioButtons.map((Radio, index) => (
