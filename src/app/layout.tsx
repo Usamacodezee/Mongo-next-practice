@@ -25,6 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/src/app/favicon.ico" />
+      </head>
       <Providers>
         <body className={inter.className} style={{ backgroundColor: "white" }}>
           <div style={{ display: "flex", height: "100vh" }}>
