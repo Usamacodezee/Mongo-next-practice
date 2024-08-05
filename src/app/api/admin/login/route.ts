@@ -19,7 +19,6 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-    console.log("user exists");
 
     const validPassword = await bcryptjs.compare(password, admin.password);
     if (!validPassword) {

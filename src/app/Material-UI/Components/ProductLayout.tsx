@@ -26,17 +26,12 @@ interface ProductLayoutProps {
 }
 
 const ProductLayout: FC<ProductLayoutProps> = ({ product }) => {
-  // console.log("product", product);
-  // console.log("product reviews", product?.reviews?.length);
-  // console.log("product rating", product?.rating);
-
   const averageRating = product?.reviews?.length
     ? product.reviews.reduce(
         (acc: number, review: any) => acc + review.rating,
         0
       ) / product.reviews.length
     : 0;
-  // console.log("average rating", averageRating);
 
   return (
     <>

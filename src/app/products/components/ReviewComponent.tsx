@@ -3,7 +3,12 @@ import moment from "moment";
 import { Rating } from "primereact/rating";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
-import React, { useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  ChangeEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import { addReviewAsync } from "@/redux/products/productSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
@@ -27,6 +32,7 @@ interface ReviewComponentProps {
 }
 
 interface ReviewDataTypes {
+  _id: string | null;
   rating: number | null;
   comment: string;
   date: Date | string;
@@ -55,6 +61,7 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
   const [UserDetails, setUserDetails] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [newReview, setNewReview] = useState<ReviewDataTypes>({
+    _id: null,
     rating: null,
     comment: "",
     date: moment().format(),
@@ -62,7 +69,9 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
     reviewerEmail: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange: ChangeEventHandler<
+    HTMLInputElement | HTMLTextAreaElement
+  > = (e) => {
     const { name, value } = e.target;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     setNewReview((prevReview: any) => ({
@@ -81,7 +90,7 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
   };
 
   const handleAddReview = () => {
-    const reviewData = {
+    const reviewData: ReviewDataTypes = {
       ...newReview,
       date: new Date(),
     };
@@ -98,8 +107,9 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
       return;
     }
     setErrors({});
-    const { reviewerName, reviewerEmail, comment, rating } = result.data;
+    const { _id, reviewerName, reviewerEmail, comment, rating } = result.data;
     const review = {
+      _id,
       reviewerName,
       reviewerEmail,
       comment,
@@ -113,9 +123,9 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
         .unwrap()
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .then((updatedProduct: any) => {
-          // console.log("Review added successfully:", updatedProduct);
           setReviewModalOff();
           setNewReview({
+            _id: null,
             reviewerName: "",
             reviewerEmail: "",
             comment: "",
@@ -150,8 +160,6 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
     };
     GetUserCredentials();
   }, []);
-
-  console.log("error", errors);
   return (
     <>
       <div className="container" style={{ padding: "10px 25px" }}>

@@ -20,7 +20,6 @@ export async function POST(req: NextRequest) {
     await newCartItemInstance.save();
     return NextResponse.json({ success: true, data: newCartItemInstance });
   } catch (error) {
-    console.log(error);
     return NextResponse.json({ success: false }, { status: 400 });
   }
 }

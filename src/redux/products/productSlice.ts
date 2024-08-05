@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ProductTypes } from "@/app/common/ProductFormData";
+import { ReviewTypes } from "@/app/common/ReviewForm";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const HOST_NAME =
@@ -26,7 +27,7 @@ export const fetchProducts = createAsyncThunk<ProductTypes[], void>(
 
 export const addReviewAsync = createAsyncThunk<
   ProductTypes,
-  { productId: string; review: any }
+  { productId: string; review: ReviewTypes }
 >("products/addReviewAsync", async ({ productId, review }) => {
   try {
     const response = await fetch(`${HOST_NAME}/products/${productId}`, {
@@ -42,7 +43,6 @@ export const addReviewAsync = createAsyncThunk<
       throw new Error(`Failed to add review: ${errorDetails}`);
     }
     const updatedReview = await response.json();
-    // console.log("updated review", updatedReview);
     return updatedReview as ProductTypes;
   } catch (error) {
     console.error("Error while adding review:", error);
@@ -70,7 +70,7 @@ export const addProductAsync = createAsyncThunk<ProductTypes, ProductTypes>(
 
 export const updateProductAsync = createAsyncThunk<
   ProductTypes,
-  { productid: number | null; product: any }
+  { productid: number | null; product: ProductTypes }
 >("products/updateProduct", async ({ productid, product }) => {
   try {
     const response = await fetch(`${HOST_NAME}/products/${productid}`, {

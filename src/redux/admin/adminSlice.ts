@@ -46,7 +46,6 @@ export const addAdminAsync = createAsyncThunk<AdminTypes, AdminTypes>(
       throw new Error("Failed to add new user");
     }
     const data = await response.json();
-    // console.log("admin created", data);
     return data;
   }
 );
@@ -65,7 +64,6 @@ export const loginAdminAsync = createAsyncThunk<any, any>(
       throw new Error("admin login failed");
     }
     const data = await response.json();
-    // console.log("admin logged in", data);
     return data;
   }
 );
@@ -75,7 +73,6 @@ export const updateAdminAsync = createAsyncThunk<
   { adminid: string; admin: any }
 >("admin/updateAdmin", async ({ adminid, admin }) => {
   try {
-    // console.log(`Updating admin with ID: ${adminid}`, admin);
     const response = await fetch(`/api/admin/${adminid}`, {
       method: "PUT",
       headers: {
@@ -90,7 +87,6 @@ export const updateAdminAsync = createAsyncThunk<
     }
 
     const edited = await response.json();
-    // console.log("successfully updated admin data", edited);
     return edited as AdminTypes;
   } catch (error) {
     console.error("Error while updating admin:", error);

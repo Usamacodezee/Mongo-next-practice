@@ -12,7 +12,15 @@ import {
 import "@/app/globals.css";
 import CloseIcon from "@mui/icons-material/Close";
 
-const ContactUsForm = [
+interface Field {
+  type: string;
+  name: string;
+  label: string;
+  variant: "outlined" | "filled" | "standard";
+  margin?: "normal" | "none" | "dense";
+}
+
+const ContactUsForm: Field[] = [
   {
     name: "name",
     type: "text",
@@ -51,7 +59,6 @@ const ContactForm = () => {
     message: "",
     date: new Date(),
   });
-  console.log("form data", formData);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackBarMessage, setSnackBarMessage] = useState("");
   const [SnackMessageTypeSuccess, setSnackMessageTypeSuccess] = useState(true);

@@ -263,7 +263,6 @@ const UserForm: React.FC<UserFormProps> = ({
             enableReinitialize={true}
             validationSchema={validationSchema}
             onSubmit={async (values, { resetForm }) => {
-              // console.log(values);
               try {
                 if (isEditMode) {
                   await dispatch(
@@ -274,7 +273,6 @@ const UserForm: React.FC<UserFormProps> = ({
                   );
                   showToast("success", "Success", "User updated successfully!");
                 } else {
-                  // console.log("value", values);
                   await dispatch(addUserAsync(values));
                 }
 

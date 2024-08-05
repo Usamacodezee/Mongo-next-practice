@@ -286,7 +286,6 @@ const ProductFormComponnent: React.FC<ProductFormProps> = ({
             enableReinitialize={true}
             validationSchema={ProductvalidationSchema}
             onSubmit={async (values, { resetForm }) => {
-              // console.log("product data", values);
               try {
                 if (isEditMode) {
                   await dispatch(

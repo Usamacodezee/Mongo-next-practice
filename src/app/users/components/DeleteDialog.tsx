@@ -35,7 +35,6 @@ const DeleteDialog: React.FC<DeleteDialogProps> = ({
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleDelete = (UserToDelete: any) => {
-    // console.log("user to delete", UserToDelete);
     dispatch(deleteUser(UserToDelete._id))
       .unwrap()
       .then(() => {

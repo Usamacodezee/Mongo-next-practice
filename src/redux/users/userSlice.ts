@@ -38,7 +38,6 @@ export const addUserAsync = createAsyncThunk<UserTypes, UserTypes>(
       throw new Error("Failed to add new user");
     }
     const data = await response.json();
-    // console.log("added user", data);
     return data;
   }
 );
