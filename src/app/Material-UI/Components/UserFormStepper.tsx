@@ -381,21 +381,21 @@ export default function UserFormStepper() {
               id="PrefferedType"
               sx={{ width: "100%" }}
               multiple
-              value={PrefferedType}
-              onChange={handleMultiChange}
-              input={
-                <OutlinedInput
-                  id="select-multiple-chip"
-                  label="Preferred Job Types"
-                />
-              }
-              renderValue={(selected: any) => (
-                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                  {selected.map((value: any) => (
-                    <Chip key={value} label={value} />
-                  ))}
-                </Box>
-              )}
+              // value={PrefferedType}
+              // onChange={handleMultiChange}
+              // input={
+              //   <OutlinedInput
+              //     id="select-multiple-chip"
+              //     label="Preferred Job Types"
+              //   />
+              // }
+              // renderValue={(selected: any) => (
+              //   <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+              //     {selected.map((value: any) => (
+              //       <Chip key={value} label={value} />
+              //     ))}
+              //   </Box>
+              // )}
               MenuProps={MenuProps}
             >
               {jobTypeOptions.map((jobType) => (
