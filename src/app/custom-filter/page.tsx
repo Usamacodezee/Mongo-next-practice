@@ -17,7 +17,7 @@ import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
 import { InputNumber, InputNumberChangeEvent } from "primereact/inputnumber";
 import { Button } from "primereact/button";
 import { ProgressBar } from "primereact/progressbar";
-import { Calendar, CalendarChangeEvent } from "primereact/calendar";
+import { Calendar, CalendarViewChangeEvent } from "primereact/calendar";
 import { MultiSelect, MultiSelectChangeEvent } from "primereact/multiselect";
 import { Slider, SliderChangeEvent } from "primereact/slider";
 import { Tag } from "primereact/tag";
@@ -290,8 +290,11 @@ export default function AdvancedFilterDemo() {
     return (
       <Calendar
         value={options.value}
-        onChange={(e: CalendarChangeEvent) =>
-          options.filterCallback(e.value, options.index)
+        onChange={(e) =>
+          options.filterCallback(
+            (e as CalendarViewChangeEvent).value,
+            options.index
+          )
         }
         dateFormat="mm/dd/yy"
         placeholder="mm/dd/yyyy"
