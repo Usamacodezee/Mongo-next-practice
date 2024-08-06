@@ -21,7 +21,7 @@ const Users = () => {
   const [loading, setLoading] = useState(true);
   const [DeleteModal, setDeleteModal] = useState(false);
   const [FormModal, setFormModal] = useState(false);
-  const [UserToDelete, setUserToDelete] = useState("");
+  const [UserToDelete, setUserToDelete] = useState<any>({});
   const [error, setError] = useState("");
   const [isEditMode, setIsEditMode] = useState(false);
 

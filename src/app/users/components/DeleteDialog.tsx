@@ -1,14 +1,14 @@
-/* eslint-disable react/prop-types */
+ 
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast"; // Import Toast
 import React, { useRef } from "react"; // Import useRef
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { deleteUser } from "@/redux/users/userSlice";
+import { UserTypes } from "@/app/common/FormData";
 
 interface DeleteDialogProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  UserToDelete: any;
+  UserToDelete: UserTypes;
   onClose: () => void;
   setLoading: () => void;
   FetchUpdatedData: () => void;

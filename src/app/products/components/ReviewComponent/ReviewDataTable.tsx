@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-unescaped-entities */
 import moment from "moment";
 import { Card } from "primereact/card";
@@ -8,15 +9,11 @@ import Image from "next/image";
 import React from "react";
 
 interface ReviewDataTableProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ProductReview: any;
 }
 
-// eslint-disable-next-line react/prop-types
 const ReviewDataTable: React.FC<ReviewDataTableProps> = ({ ProductReview }) => {
-  // eslint-disable-next-line react/prop-types
   const ReviewsCount = ProductReview?.reviews?.length;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const itemTemplate = (Reviews: any) => {
     return (
       <Card key={Reviews._id} className="ReviewsComponent m-1">
@@ -96,8 +93,6 @@ const ReviewDataTable: React.FC<ReviewDataTableProps> = ({ ProductReview }) => {
           <Image
             src={NotFound}
             alt="No records found"
-            // height="100"
-            // width="100"
             style={{
               width: "50%",
               height: "50%",

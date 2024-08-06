@@ -41,7 +41,7 @@ const MenuProps = {
 
 function getStyles(
   name: string,
-  PrefferedLocations: readonly string[],
+  PrefferedLocations: string | readonly string[],
   theme: Theme
 ) {
   return {
@@ -174,7 +174,7 @@ export default function UserFormStepper() {
     return (
       <>
         <Box sx={{ display: "flex" }} className="mt-4">
-          <Box sx={{ width: "50%" }} className="mx-1">
+          <Box sx={{ width: "35%" }} className="mx-1">
             <Typography>Designation</Typography>
             <Select
               labelId="designation"
@@ -191,7 +191,7 @@ export default function UserFormStepper() {
               ))}
             </Select>
           </Box>
-          <Box sx={{ width: "50%" }} className="mx-1">
+          <Box sx={{ width: "20%" }} className="mx-1">
             <Typography>Job Type</Typography>
             <Select
               labelId="jobType"
@@ -208,9 +208,7 @@ export default function UserFormStepper() {
               ))}
             </Select>
           </Box>
-        </Box>
-        <Box sx={{ display: "flex" }} className="mt-4">
-          <Box sx={{ width: "50%" }} className="mx-1">
+          <Box sx={{ width: "25%" }} className="mx-1">
             <Typography>Job location</Typography>
             <Select
               labelId="JobLocation"
@@ -227,7 +225,8 @@ export default function UserFormStepper() {
               ))}
             </Select>
           </Box>
-          <Box sx={{ width: "50%" }} className="mx-1">
+          
+          <Box sx={{ width: "20%" }} className="mx-1">
             <Typography>Job Type</Typography>
             <Select
               labelId="ExperienceLevel"
@@ -246,7 +245,7 @@ export default function UserFormStepper() {
           </Box>
         </Box>
         <Box sx={{ display: "flex" }} className="mt-4">
-          <Box sx={{ width: "25%" }} className="mx-1">
+          <Box sx={{ width: "30%" }} className="mx-1">
             <Typography>Income details (monthly)</Typography>
             <TextField
               id="salary"
@@ -255,19 +254,7 @@ export default function UserFormStepper() {
               placeholder="Enter Your Salary ( Monthly )"
             />
           </Box>
-          <Box sx={{ width: "35%" }} className="mx-1">
-            <Typography>Date of Joining</Typography>
-            <TextField
-              id="joiningDate"
-              type="date"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              style={{ width: "100%" }}
-              placeholder="Enter Date of Joining"
-            />
-          </Box>
-          <Box sx={{ width: "40%" }} className="mx-1">
+          <Box sx={{ width: "30%" }} className="mx-1">
             <Typography>Job location</Typography>
             <Select
               labelId="shiftTiming"
@@ -284,9 +271,7 @@ export default function UserFormStepper() {
               ))}
             </Select>
           </Box>
-        </Box>
-        <Box sx={{ display: "flex" }} className="mt-4">
-          <Box sx={{ width: "50%" }} className="mx-1">
+          <Box sx={{ width: "30%" }} className="mx-1">
             <Typography>Notice period duration</Typography>
             <Select
               labelId="NoticePeriodDuration"
@@ -305,25 +290,41 @@ export default function UserFormStepper() {
               )}
             </Select>
           </Box>
-          <Box sx={{ width: "25%" }} className="mx-1">
+        </Box>
+        <Box sx={{ display: "flex" }} className="mt-4">
+        </Box>
+        <Box sx={{ display: "flex" }} className="mt-4">
+          <Box sx={{ width: "40%" }} className="mx-1">
+            <Typography>Date of Joining</Typography>
+            <TextField
+              id="joiningDate"
+              type="date"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              style={{ width: "100%" }}
+              placeholder="Enter Date of Joining"
+            />
+          </Box>
+          <Box sx={{ width: "30%", paddingLeft: "20px" }} className="mx-1">
             <Typography>Serving notice period</Typography>
             <RadioGroup
               row
               aria-labelledby="noticePeriod"
               name="noticePeriod"
-              sx={{ display: "flex", justifyContent: "space-evenly" }}
+              sx={{ display: "flex", flexDirection:"column", justifyContent: "space-around", paddingLeft: "20px" }}
             >
               <FormControlLabel value={true} control={<Radio />} label="Yes" />
               <FormControlLabel value={false} control={<Radio />} label="No" />
             </RadioGroup>
           </Box>
-          <Box sx={{ width: "25%" }} className="mx-1">
+          <Box sx={{ width: "30%", paddingLeft: "20px" }} className="mx-1">
             <Typography>Serving probation period</Typography>
             <RadioGroup
               row
               aria-labelledby="probationPeriod"
               name="probationPeriod"
-              sx={{ display: "flex", justifyContent: "space-evenly" }}
+              sx={{ display: "flex", flexDirection:"column", justifyContent: "space-around", paddingLeft: "20px" }}
             >
               <FormControlLabel value={true} control={<Radio />} label="Yes" />
               <FormControlLabel value={false} control={<Radio />} label="No" />
@@ -388,9 +389,9 @@ export default function UserFormStepper() {
                   label="Preferred Job Types"
                 />
               }
-              renderValue={(selected) => (
+              renderValue={(selected: any) => (
                 <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                  {selected.map((value) => (
+                  {selected.map((value: any) => (
                     <Chip key={value} label={value} />
                   ))}
                 </Box>

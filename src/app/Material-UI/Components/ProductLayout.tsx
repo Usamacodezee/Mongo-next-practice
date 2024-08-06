@@ -3,7 +3,6 @@ import type { FC } from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Image from "next/image";
 import moment from "moment";
 import { Button, Chip, Rating } from "@mui/material";
 import "@/app/CSS/custom.css";
@@ -20,6 +19,7 @@ import CurrencyRupeeOutlinedIcon from "@mui/icons-material/CurrencyRupeeOutlined
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import React from "react";
+import { Image } from "primereact/image";
 
 interface ProductLayoutProps {
   product: any;
@@ -66,6 +66,7 @@ const ProductLayout: FC<ProductLayoutProps> = ({ product }) => {
             width="130"
             alt={product.name}
             src={product.image}
+            preview
           />
           <Box sx={{ pt: 0.5, textAlign: "justify" }}>
             <Typography gutterBottom variant="body1" fontWeight="bold">

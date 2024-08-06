@@ -51,7 +51,6 @@ const initialValues: ProductTypes = {
 
 interface ProductFormProps {
   EditableData: ProductTypes;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   isEditMode: boolean;
   fetchData: () => void;
   onClose: () => void;
@@ -61,7 +60,6 @@ interface ProductFormProps {
   setIsEditModeOff: () => void;
   HandleClose: () => void;
   setLoadingon: () => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setEditableData: (data: ProductTypes | null) => void;
 }
 
@@ -87,15 +85,14 @@ const ProductFormComponnent: React.FC<ProductFormProps> = ({
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const fieldComponents: any = {
-    // eslint-disable-next-line react/react-in-jsx-scope, @typescript-eslint/no-explicit-any
+     
     InputText: (props: any) => <InputText {...props} />,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
     InputTextarea: (props: any) => (
       <InputTextarea style={{ height: "10rem" }} {...props} />
     ),
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
     Checkbox: (props: any) => {
       const value =
         ProductForm.find((item) => item?.name === props?.name)?.value || [];
@@ -128,7 +125,7 @@ const ProductFormComponnent: React.FC<ProductFormProps> = ({
         </div>
       );
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
     GroupCheckbox: (props: any) => {
       return (
         <Field name={props?.name}>

@@ -3,12 +3,7 @@ import moment from "moment";
 import { Rating } from "primereact/rating";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
-import React, {
-  ChangeEvent,
-  ChangeEventHandler,
-  useEffect,
-  useState,
-} from "react";
+import React, { ChangeEventHandler, useEffect, useState } from "react";
 import { addReviewAsync } from "@/redux/products/productSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
@@ -58,7 +53,6 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
   fetchData,
 }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const [UserDetails, setUserDetails] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [newReview, setNewReview] = useState<ReviewDataTypes>({
     _id: null,
@@ -107,15 +101,16 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
       return;
     }
     setErrors({});
-    const { _id, reviewerName, reviewerEmail, comment, rating } = result.data;
+    const { reviewerName, reviewerEmail, comment, rating } = result.data;
     const review = {
-      _id,
+      _id: ProductReview._id,
       reviewerName,
       reviewerEmail,
       comment,
       rating,
       date: new Date(),
     };
+
     const productId = ProductReview._id;
 
     if (productId) {
@@ -148,7 +143,6 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
       try {
         const res = await axios.get("/api/admin/me");
         const user = res.data.data;
-        setUserDetails(user);
         setNewReview((prevReview) => ({
           ...prevReview,
           reviewerName: user.username,
@@ -184,7 +178,7 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
                 variant="filled"
                 name="reviewerName"
                 placeholder="Your Name"
-                value={UserDetails?.username}
+                value={newReview.reviewerName}
                 onChange={handleChange}
                 className=" mb-3 px-2 py-1"
                 style={{ pointerEvents: "none", opacity: "0.5" }}

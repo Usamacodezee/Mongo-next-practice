@@ -168,7 +168,11 @@ const ProfileUpdateComponent: React.FC<ProfileUpdateComponentProps> = ({
                   <Message
                     className="mt-1"
                     severity="error"
-                    text={formik.errors.username}
+                    text={
+                      typeof formik.errors.username === "string"
+                        ? formik.errors.username
+                        : ""
+                    }
                   />
                 ) : null}
               </div>
@@ -217,7 +221,11 @@ const ProfileUpdateComponent: React.FC<ProfileUpdateComponentProps> = ({
                   <Message
                     className="mt-1"
                     severity="error"
-                    text={formik.errors.username}
+                    text={
+                      typeof formik.errors.username === "string"
+                        ? formik.errors.username
+                        : ""
+                    }
                   />
                 ) : null}
               </div>
@@ -266,7 +274,11 @@ const ProfileUpdateComponent: React.FC<ProfileUpdateComponentProps> = ({
                   <Message
                     className="mt-1"
                     severity="error"
-                    text={formik.errors.email}
+                    text={
+                      typeof formik.errors.email === "string"
+                        ? formik.errors.email
+                        : ""
+                    }
                   />
                 ) : null}
               </div>

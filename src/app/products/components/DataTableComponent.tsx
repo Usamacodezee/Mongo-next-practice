@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Column, ColumnFilterElementTemplateOptions } from "primereact/column";
 import {
@@ -36,20 +37,15 @@ import { Image } from "primereact/image";
 interface FilterType extends DataTableFilterMeta {}
 
 interface DataTableComponentProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   loading: true | false;
   fetchData: () => void;
   setLoadingOff: () => void;
   setLoadingOn: () => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   HandleUpdateRecord: (rowData: ProductTypes) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   handleDeleteModal: (rowData: any) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   handleProductToReview: (reviews: any, e: any) => void;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const DefaultFilters: any = {
   global: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
   name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
@@ -69,9 +65,7 @@ const DataTableComponent: React.FC<DataTableComponentProps> = ({
   handleDeleteModal,
   handleProductToReview,
 }) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dt = useRef<any>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const op = useRef<any>(null);
   const dispatch = useDispatch<AppDispatch>();
   const products = useSelector((state: RootState) => state.products);
@@ -80,11 +74,9 @@ const DataTableComponent: React.FC<DataTableComponentProps> = ({
   );
   const [LoggedUserId, setLoggedUserId] = useState("");
   const UserIdOfCartOwner = LoggedUserId;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
   const [overlayProduct, setOverlayProduct] = useState<any>(null);
 
   const toast = useRef<Toast>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const showToast = (severity: any, summary: string, detail: string) => {
     if (toast.current) {
       toast.current.show({ severity, summary, detail });
@@ -113,7 +105,6 @@ const DataTableComponent: React.FC<DataTableComponentProps> = ({
   }, []);
 
   const handleAddItemToCart = (
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     rowData: any,
     UserIdOfCartOwner: number | string
   ) => {
@@ -149,7 +140,6 @@ const DataTableComponent: React.FC<DataTableComponentProps> = ({
       .then(() => {
         showToast("success", "Success", "Added to cart");
       })
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .catch((error: any) => {
         console.error("Error adding item to cart:", error);
         showToast("error", "Error", "Failed to add item to cart");
@@ -176,8 +166,7 @@ const DataTableComponent: React.FC<DataTableComponentProps> = ({
     );
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const ActionBodyTemplate = (rowData: any) => {
+  const ActionBodyTemplate = (rowData: ProductTypes) => {
     return (
       <React.Fragment>
         <div className="d-flex mb-2">
@@ -262,8 +251,7 @@ const DataTableComponent: React.FC<DataTableComponentProps> = ({
     );
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const PurchaseBodyTemplate = (rowData: any) => {
+  const PurchaseBodyTemplate = (rowData: ProductTypes) => {
     return (
       <React.Fragment>
         <div
